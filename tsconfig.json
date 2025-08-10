@@ -1,0 +1,78 @@
+{
+  // ============================================================================
+  // TYPESCRIPT CONFIGURATION FILE
+  // ============================================================================
+  // This file configures TypeScript compiler options for the Next.js project
+  // For more information, see: https://www.typescriptlang.org/tsconfig
+
+  // ============================================================================
+  // COMPILER OPTIONS
+  // ============================================================================
+  "compilerOptions": {
+    // ============================================================================
+    // LANGUAGE AND ENVIRONMENT
+    // ============================================================================
+    "target": "ES2017",                    // ECMAScript target version (ES2017 = ES8)
+    "lib": ["dom", "dom.iterable", "esnext"], // Include DOM types and latest ECMAScript features
+    
+    // ============================================================================
+    // MODULE SYSTEM
+    // ============================================================================
+    "allowJs": true,                       // Allow JavaScript files to be compiled
+    "esModuleInterop": true,               // Enable interop between CommonJS and ES modules
+    "module": "esnext",                    // Use ES modules (ES6+ import/export)
+    "moduleResolution": "bundler",         // Use bundler-based module resolution (Next.js)
+    
+    // ============================================================================
+    // TYPE CHECKING
+    // ============================================================================
+    "strict": true,                        // Enable all strict type checking options
+    "skipLibCheck": true,                  // Skip type checking of declaration files
+    "isolatedModules": true,               // Ensure each file can be safely transpiled
+    
+    // ============================================================================
+    // EMISSION
+    // ============================================================================
+    "noEmit": true,                        // Don't emit files (Next.js handles this)
+    "incremental": true,                   // Enable incremental compilation for faster builds
+    
+    // ============================================================================
+    // JSX SUPPORT
+    // ============================================================================
+    "jsx": "preserve",                     // Preserve JSX for Next.js to handle
+    
+    // ============================================================================
+    // MODULE RESOLUTION
+    // ============================================================================
+    "resolveJsonModule": true,             // Allow importing JSON files as modules
+    
+    // ============================================================================
+    // NEXT.JS INTEGRATION
+    // ============================================================================
+    "plugins": [
+      {
+        "name": "next"                     // Enable Next.js TypeScript plugin
+      }
+    ],
+    
+    // ============================================================================
+    // PATH MAPPING
+    // ============================================================================
+    "paths": {
+      "@/*": ["./src/*"]                   // Map @/ to src/ directory for clean imports
+    }
+  },
+
+  // ============================================================================
+  // FILE INCLUSION/EXCLUSION
+  // ============================================================================
+  "include": [
+    "next-env.d.ts",                       // Next.js type definitions
+    "**/*.ts",                             // All TypeScript files
+    "**/*.tsx",                            // All TypeScript React files
+    ".next/types/**/*.ts"                  // Next.js generated types
+  ],
+  "exclude": [
+    "node_modules"                         // Exclude dependencies
+  ]
+}
