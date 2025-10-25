@@ -85,7 +85,7 @@ const skills: Skill[] = [
     projects: ["E-Commerce Empire", "AI Code Reviewer"],
     devilFruit: "Goro Goro no Mi",
     character: "Enel",
-    characterIcon: <OnePieceIcon type="devil-fruit" size="sm" animated className="text-treasure-gold dark:text-treasure-gold" />,
+    characterIconType: "devil-fruit",
     hakiType: "Conqueror's"
   },
   {
