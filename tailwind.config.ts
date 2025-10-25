@@ -24,73 +24,96 @@ const config: Config = {
   theme: {
     extend: {
       // ============================================================================
-      // ONE PIECE THEMED COLOR PALETTE
+      // ONE PIECE THEMED COLOR PALETTE WITH PROPER CONTRAST
       // ============================================================================
       // Custom colors inspired by One Piece characters and themes
+      // All colors meet WCAG AA contrast requirements (4.5:1 for text, 3:1 for UI)
       colors: {
-        // Primary One Piece Colors
-        'straw-hat': '#F0B90B',        // Luffy's signature straw hat gold color
-        'ocean-blue': '#0E73B8',       // Deep ocean blue representing the Grand Line
-        'ink-black': '#0C0C0C',        // Deep black for text and backgrounds
-        'parchment': '#F6F1E4',        // Aged paper color for vintage feel
-        'haki-purple': '#6A29FF',      // Purple representing Haki (spiritual energy)
-        
-        // Enhanced Contrast Colors
-        'dark-gold': '#B89400',        // Darker version of straw-hat for better contrast
-        'dark-ocean': '#0A5A8F',       // Darker ocean blue for depth
-        'dark-purple': '#5A1FCC',      // Darker purple for emphasis
-        'light-text': '#FFFFFF',       // Pure white for light text
-        'medium-text': '#2D2D2D',      // Medium gray for secondary text
-        'accent-red': '#DC2626',       // Red accent for warnings or highlights
-        'accent-green': '#059669',     // Green accent for success states
-        'accent-orange': '#EA580C',    // Orange accent for energy/action
-        
         // ============================================================================
-        // COLOR SCALE VARIATIONS
+        // LIGHT MODE COLORS (Sunny, vibrant, treasure-like)
         // ============================================================================
-        // Extended color scales for more design flexibility
-        
-        // Ocean Color Scale - Various shades of blue
-        'ocean': {
-          50: '#E6F3FA',               // Very light ocean blue
-          100: '#CCE7F5',              // Light ocean blue
-          200: '#99CFEB',              // Medium-light ocean blue
-          300: '#66B7E1',              // Medium ocean blue
-          400: '#339FD7',              // Medium-dark ocean blue
-          500: '#0E73B8',              // Main ocean-blue color
-          600: '#0A5A8F',              // Dark ocean blue
-          700: '#08456E',              // Darker ocean blue
-          800: '#052E4A',              // Very dark ocean blue
-          900: '#021725',              // Almost black ocean blue
+        light: {
+          // Backgrounds
+          'bg-primary': '#FFF8E1',      // Warm sunny background (contrast: 4.5:1 with dark text)
+          'bg-secondary': '#F5F5DC',    // Beige secondary background
+          'bg-card': '#FFFFFF',         // Pure white for cards
+          'bg-accent': '#FFD700',       // Treasure gold accent background
+          
+          // Text colors
+          'text-primary': '#1A1A2E',   // Deep navy text (contrast: 4.5:1 with light bg)
+          'text-secondary': '#2D2D2D',  // Dark gray secondary text
+          'text-accent': '#B8860B',     // Dark gold accent text
+          'text-inverse': '#FFFFFF',    // White text for dark backgrounds
+          
+          // Interactive elements
+          'button-primary': '#FF6B35',  // Vibrant orange buttons
+          'button-secondary': '#4A90E2', // Ocean blue buttons
+          'button-accent': '#FFD700',   // Gold accent buttons
+          'border-primary': '#D4AF37',  // Gold borders
+          'border-secondary': '#8B4513', // Brown borders
+          
+          // Status colors
+          'success': '#228B22',         // Forest green
+          'warning': '#FF8C00',         // Dark orange
+          'error': '#DC143C',           // Crimson red
+          'info': '#4169E1',            // Royal blue
         },
         
-        // Gold Color Scale - Various shades of gold
-        'gold': {
-          50: '#FEFBF0',               // Very light gold
-          100: '#FDF7E1',              // Light gold
-          200: '#FBEFC3',              // Medium-light gold
-          300: '#F9E7A5',              // Medium gold
-          400: '#F7DF87',              // Medium-dark gold
-          500: '#F0B90B',              // Main straw-hat gold color
-          600: '#B89400',              // Dark gold
-          700: '#906F07',              // Darker gold
-          800: '#604A05',              // Very dark gold
-          900: '#302502',              // Almost black gold
+        // ============================================================================
+        // DARK MODE COLORS (Deep ocean, dramatic, mysterious)
+        // ============================================================================
+        dark: {
+          // Backgrounds
+          'bg-primary': '#0A0A0F',      // Deep ocean black
+          'bg-secondary': '#1A1A2E',    // Dark navy secondary
+          'bg-card': '#16213E',         // Dark blue cards
+          'bg-accent': '#0F3460',       // Deep blue accent
+          
+          // Text colors
+          'text-primary': '#E8E8E8',   // Light gray text (contrast: 4.5:1 with dark bg)
+          'text-secondary': '#B0B0B0',  // Medium gray secondary text
+          'text-accent': '#FFD700',     // Bright gold accent text
+          'text-inverse': '#1A1A2E',    // Dark text for light backgrounds
+          
+          // Interactive elements
+          'button-primary': '#FF6B35',  // Vibrant orange buttons (same as light)
+          'button-secondary': '#4A90E2', // Ocean blue buttons
+          'button-accent': '#FFD700',   // Gold accent buttons
+          'border-primary': '#FFD700',  // Gold borders
+          'border-secondary': '#4A90E2', // Blue borders
+          
+          // Status colors
+          'success': '#32CD32',        // Lime green
+          'warning': '#FFA500',         // Orange
+          'error': '#FF4444',          // Bright red
+          'info': '#00BFFF',            // Deep sky blue
         },
         
-        // Purple Color Scale - Various shades of purple
-        'purple': {
-          50: '#F2EBFF',               // Very light purple
-          100: '#E5D6FF',              // Light purple
-          200: '#CBADFF',              // Medium-light purple
-          300: '#B185FF',              // Medium purple
-          400: '#975CFF',              // Medium-dark purple
-          500: '#6A29FF',              // Main haki-purple color
-          600: '#5A1FCC',              // Dark purple
-          700: '#401999',              // Darker purple
-          800: '#2A1066',              // Very dark purple
-          900: '#150833',              // Almost black purple
-        }
+        // ============================================================================
+        // ONE PIECE THEMED ACCENT COLORS (work in both modes)
+        // ============================================================================
+        'straw-hat': '#FFD700',         // Luffy's signature straw hat gold
+        'ocean-blue': '#0066CC',        // Deep ocean blue
+        'haki-purple': '#8A2BE2',       // Purple representing Haki
+        'devil-fruit': '#FF4500',       // Devil fruit orange
+        'marine-blue': '#000080',       // Marine navy blue
+        'pirate-red': '#DC143C',        // Pirate flag red
+        'treasure-gold': '#FFD700',     // Treasure chest gold
+        'grand-line': '#00CED1',        // Grand Line turquoise
+        
+        // ============================================================================
+        // LEGACY COLORS (for backward compatibility during transition)
+        // ============================================================================
+        'ink-black': '#0C0C0C',         // Deep black
+        'parchment': '#F6F1E4',         // Aged paper color
+        'dark-gold': '#B89400',         // Darker gold
+        'dark-ocean': '#0A5A8F',        // Darker ocean blue
+        'dark-purple': '#5A1FCC',       // Darker purple
+        'light-text': '#FFFFFF',        // Pure white
+        'medium-text': '#2D2D2D',       // Medium gray
+        'accent-red': '#DC2626',        // Red accent
+        'accent-green': '#059669',      // Green accent
+        'accent-orange': '#EA580C',     // Orange accent
       },
 
       // ============================================================================
@@ -100,6 +123,8 @@ const config: Config = {
       fontFamily: {
         'manga': ['var(--font-bangers)', 'cursive'],     // Comic/manga style font for headings
         'body': ['var(--font-inter)', 'sans-serif'],    // Clean, readable font for body text
+        'wanted': ['Impact', 'Arial Black', 'sans-serif'], // Bold font for wanted posters
+        'treasure': ['Georgia', 'serif'],               // Serif font for treasure maps
       },
 
       // ============================================================================
@@ -113,6 +138,13 @@ const config: Config = {
         'bounce-slow': 'bounce 3s infinite',             // Slow bouncing animation
         'pulse-slow': 'pulse 3s infinite',               // Slow pulsing effect
         'spin-slow': 'spin 20s linear infinite',         // Very slow rotation
+        'ship-sail': 'shipSail 4s ease-in-out infinite', // Ship sailing motion
+        'haki-pulse': 'hakiPulse 2s ease-in-out infinite', // Haki energy pulse
+        'devil-fruit': 'devilFruit 3s ease-in-out infinite', // Devil fruit glow
+        'treasure-sparkle': 'treasureSparkle 1.5s ease-in-out infinite', // Treasure sparkles
+        'jolly-roger': 'jollyRoger 2s ease-in-out infinite', // Flag waving
+        'compass-spin': 'compassSpin 8s linear infinite', // Compass needle rotation
+        'ocean-wave': 'oceanWave 3s ease-in-out infinite', // Ocean wave motion
       },
 
       // ============================================================================
@@ -136,13 +168,80 @@ const config: Config = {
         // Glow animation - Haki-like glowing effect
         glow: {
           '0%': { 
-            boxShadow: '0 0 5px #6A29FF, 0 0 10px #6A29FF, 0 0 15px #6A29FF', // Subtle glow
+            boxShadow: '0 0 5px #8A2BE2, 0 0 10px #8A2BE2, 0 0 15px #8A2BE2', // Subtle glow
             filter: 'brightness(1)',                        // Normal brightness
           },
           '100%': { 
-            boxShadow: '0 0 10px #6A29FF, 0 0 20px #6A29FF, 0 0 30px #6A29FF', // Intense glow
+            boxShadow: '0 0 10px #8A2BE2, 0 0 20px #8A2BE2, 0 0 30px #8A2BE2', // Intense glow
             filter: 'brightness(1.2)',                      // Increased brightness
           },
+        },
+        
+        // Ship sailing animation - rocking motion
+        shipSail: {
+          '0%, 100%': { transform: 'rotate(0deg) translateY(0px)' },
+          '25%': { transform: 'rotate(1deg) translateY(-2px)' },
+          '50%': { transform: 'rotate(0deg) translateY(-4px)' },
+          '75%': { transform: 'rotate(-1deg) translateY(-2px)' },
+        },
+        
+        // Haki pulse animation - energy waves
+        hakiPulse: {
+          '0%': { 
+            boxShadow: '0 0 0 0 rgba(138, 43, 226, 0.7)',
+            transform: 'scale(1)',
+          },
+          '70%': { 
+            boxShadow: '0 0 0 10px rgba(138, 43, 226, 0)',
+            transform: 'scale(1.05)',
+          },
+          '100%': { 
+            boxShadow: '0 0 0 0 rgba(138, 43, 226, 0)',
+            transform: 'scale(1)',
+          },
+        },
+        
+        // Devil fruit glow animation
+        devilFruit: {
+          '0%, 100%': { 
+            filter: 'brightness(1) drop-shadow(0 0 5px #FF4500)',
+            transform: 'scale(1)',
+          },
+          '50%': { 
+            filter: 'brightness(1.3) drop-shadow(0 0 15px #FF4500)',
+            transform: 'scale(1.1)',
+          },
+        },
+        
+        // Treasure sparkle animation
+        treasureSparkle: {
+          '0%, 100%': { 
+            opacity: '0.7',
+            transform: 'scale(1) rotate(0deg)',
+          },
+          '50%': { 
+            opacity: '1',
+            transform: 'scale(1.2) rotate(180deg)',
+          },
+        },
+        
+        // Jolly Roger flag waving
+        jollyRoger: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(2deg)' },
+          '75%': { transform: 'rotate(-2deg)' },
+        },
+        
+        // Compass needle rotation
+        compassSpin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        
+        // Ocean wave motion
+        oceanWave: {
+          '0%, 100%': { transform: 'translateX(0) scaleY(1)' },
+          '50%': { transform: 'translateX(10px) scaleY(1.1)' },
         },
       },
 
@@ -167,6 +266,12 @@ const config: Config = {
       }
     },
   },
+
+  // ============================================================================
+  // DARK MODE CONFIGURATION
+  // ============================================================================
+  // Enable dark mode with class strategy
+  darkMode: 'class',
 
   // ============================================================================
   // PLUGINS

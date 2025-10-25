@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
+import OnePieceIcon from "@/components/ui/OnePieceIcons";
 
 interface Skill {
   name: string;
@@ -12,6 +13,10 @@ interface Skill {
   icon: string;
   color: string;
   projects: string[];
+  devilFruit: string; // Devil Fruit name
+  character: string; // Associated character
+  characterIconType: "log-pose" | "straw-hat-jolly-roger" | "devil-fruit" | "treasure-chest" | "transponder-snail" | "luffy-silhouette";
+  hakiType: "Observation" | "Armament" | "Conqueror's" | "Special";
 }
 
 const skills: Skill[] = [
@@ -23,7 +28,11 @@ const skills: Skill[] = [
     description: "Master of component-based architecture with hooks and context",
     icon: "⚛️",
     color: "from-blue-400 to-blue-600",
-    projects: ["E-Commerce Empire", "Crew Task Manager", "Grand Line Weather"]
+    projects: ["E-Commerce Empire", "Crew Task Manager", "Grand Line Weather"],
+    devilFruit: "Gomu Gomu no Mi",
+    character: "Luffy",
+    characterIconType: "straw-hat-jolly-roger",
+    hakiType: "Conqueror's"
   },
   {
     name: "Next.js",
@@ -32,7 +41,11 @@ const skills: Skill[] = [
     description: "Full-stack React framework with SSR and API routes",
     icon: "🔥",
     color: "from-gray-700 to-gray-900",
-    projects: ["Portfolio Forge", "Crew Task Manager"]
+    projects: ["Portfolio Forge", "Crew Task Manager"],
+    devilFruit: "Mera Mera no Mi",
+    character: "Ace",
+    characterIconType: "devil-fruit",
+    hakiType: "Armament"
   },
   {
     name: "TypeScript",
@@ -41,7 +54,11 @@ const skills: Skill[] = [
     description: "Type-safe JavaScript for scalable applications",
     icon: "📘",
     color: "from-blue-500 to-blue-700",
-    projects: ["Crew Task Manager", "AI Code Reviewer"]
+    projects: ["Crew Task Manager", "AI Code Reviewer"],
+    devilFruit: "Ope Ope no Mi",
+    character: "Law",
+    characterIconType: "devil-fruit",
+    hakiType: "Observation"
   },
   {
     name: "Three.js",
@@ -50,7 +67,11 @@ const skills: Skill[] = [
     description: "3D graphics and animations for immersive experiences",
     icon: "🎮",
     color: "from-green-400 to-green-600",
-    projects: ["Grand Line Weather", "This Portfolio"]
+    projects: ["Grand Line Weather", "This Portfolio"],
+    devilFruit: "Hie Hie no Mi",
+    character: "Kuzan",
+    characterIconType: "devil-fruit",
+    hakiType: "Special"
   },
   
   // Backend
@@ -61,7 +82,11 @@ const skills: Skill[] = [
     description: "Server-side JavaScript with Express and microservices",
     icon: "🟢",
     color: "from-green-500 to-green-700",
-    projects: ["E-Commerce Empire", "AI Code Reviewer"]
+    projects: ["E-Commerce Empire", "AI Code Reviewer"],
+    devilFruit: "Goro Goro no Mi",
+    character: "Enel",
+    characterIcon: <OnePieceIcon type="devil-fruit" size="sm" animated className="text-treasure-gold dark:text-treasure-gold" />,
+    hakiType: "Conqueror's"
   },
   {
     name: "Python",
@@ -70,7 +95,11 @@ const skills: Skill[] = [
     description: "Data processing, AI/ML, and API development",
     icon: "🐍",
     color: "from-yellow-400 to-yellow-600",
-    projects: ["Portfolio Forge", "AI Code Reviewer"]
+    projects: ["Portfolio Forge", "AI Code Reviewer"],
+    devilFruit: "Suna Suna no Mi",
+    character: "Crocodile",
+    characterIconType: "devil-fruit",
+    hakiType: "Armament"
   },
   {
     name: "PostgreSQL",
@@ -79,7 +108,11 @@ const skills: Skill[] = [
     description: "Relational database design and optimization",
     icon: "🐘",
     color: "from-blue-600 to-blue-800",
-    projects: ["Crew Task Manager", "E-Commerce Empire"]
+    projects: ["Crew Task Manager", "E-Commerce Empire"],
+    devilFruit: "Hana Hana no Mi",
+    character: "Robin",
+    characterIconType: "devil-fruit",
+    hakiType: "Observation"
   },
   {
     name: "MongoDB",
@@ -88,7 +121,11 @@ const skills: Skill[] = [
     description: "NoSQL database for flexible data structures",
     icon: "🍃",
     color: "from-green-600 to-green-800",
-    projects: ["E-Commerce Empire", "Portfolio Forge"]
+    projects: ["E-Commerce Empire", "Portfolio Forge"],
+    devilFruit: "Moku Moku no Mi",
+    character: "Smoker",
+    characterIconType: "devil-fruit",
+    hakiType: "Special"
   },
 
   // DevOps & Tools
@@ -99,7 +136,11 @@ const skills: Skill[] = [
     description: "Containerization for consistent deployments",
     icon: "🐳",
     color: "from-blue-400 to-blue-600",
-    projects: ["AI Code Reviewer", "Portfolio Forge"]
+    projects: ["AI Code Reviewer", "Portfolio Forge"],
+    devilFruit: "Bara Bara no Mi",
+    character: "Buggy",
+    characterIconType: "devil-fruit",
+    hakiType: "Special"
   },
   {
     name: "AWS",
@@ -108,7 +149,11 @@ const skills: Skill[] = [
     description: "Cloud infrastructure and serverless architecture",
     icon: "☁️",
     color: "from-orange-400 to-orange-600",
-    projects: ["E-Commerce Empire", "Grand Line Weather"]
+    projects: ["E-Commerce Empire", "Grand Line Weather"],
+    devilFruit: "Gasu Gasu no Mi",
+    character: "Caesar",
+    characterIconType: "devil-fruit",
+    hakiType: "Armament"
   },
   {
     name: "Git",
@@ -117,7 +162,11 @@ const skills: Skill[] = [
     description: "Version control and collaborative development",
     icon: "🌿",
     color: "from-red-400 to-red-600",
-    projects: ["All Projects"]
+    projects: ["All Projects"],
+    devilFruit: "Moku Moku no Mi",
+    character: "Smoker",
+    characterIconType: "devil-fruit",
+    hakiType: "Observation"
   },
 
   // Blockchain
@@ -128,7 +177,11 @@ const skills: Skill[] = [
     description: "Smart contract development for Ethereum",
     icon: "⛓️",
     color: "from-purple-400 to-purple-600",
-    projects: ["Decentralized Democracy"]
+    projects: ["Decentralized Democracy"],
+    devilFruit: "Kira Kira no Mi",
+    character: "Diamond Jozu",
+    characterIconType: "treasure-chest",
+    hakiType: "Conqueror's"
   }
 ];
 
@@ -142,12 +195,11 @@ const levelLabels: Record<number, string> = {
   5: "Master"
 };
 
-const levelColors: Record<number, string> = {
-  1: "from-gray-400 to-gray-500",
-  2: "from-blue-400 to-blue-500",
-  3: "from-green-400 to-green-500",
-  4: "from-yellow-400 to-yellow-500",
-  5: "from-purple-400 to-purple-500"
+const hakiColors: Record<string, string> = {
+  "Observation": "from-blue-400 to-blue-600",
+  "Armament": "from-red-400 to-red-600", 
+  "Conqueror's": "from-purple-400 to-purple-600",
+  "Special": "from-green-400 to-green-600"
 };
 
 export default function Skills() {
@@ -164,7 +216,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={containerRef}
-      className="relative py-20 lg:py-32 bg-gradient-to-b from-blue-800 to-black text-white overflow-hidden"
+      className="relative py-20 lg:py-32 bg-gradient-to-b from-light-bg-primary via-light-bg-secondary to-light-bg-primary dark:from-dark-bg-primary dark:via-dark-bg-secondary dark:to-dark-bg-primary overflow-hidden"
     >
       {/* Background effects */}
       <div className="absolute inset-0">
@@ -185,7 +237,7 @@ export default function Skills() {
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-haki-purple rounded-full opacity-30"
+            className="absolute w-2 h-2 bg-haki-purple dark:bg-haki-purple rounded-full opacity-30"
             style={{
               left: `${20 + i * 15}%`,
               top: `${30 + (i % 3) * 20}%`,
@@ -213,7 +265,7 @@ export default function Skills() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="font-manga text-4xl sm:text-5xl lg:text-6xl text-straw-hat mb-6"
+            className="font-manga text-4xl sm:text-5xl lg:text-6xl text-straw-hat dark:text-treasure-gold mb-6"
             animate={hoveredSkill ? { 
               textShadow: [
                 "0 0 10px #6A29FF", 
@@ -227,7 +279,7 @@ export default function Skills() {
           >
             Dev Haki
           </motion.h2>
-          <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-light-text-secondary dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
             Just like the legendary power of Haki, these skills flow through every line of code I write.
             Each one has been forged through countless battles in the digital seas.
           </p>
@@ -247,8 +299,8 @@ export default function Skills() {
               className={cn(
                 "px-6 py-3 rounded-lg font-medium transition-all duration-300",
                 selectedCategory === category
-                  ? "bg-haki-purple text-white shadow-lg haki-glow"
-                  : "bg-white/80 text-black hover:bg-white hover:shadow-md"
+                  ? "bg-haki-purple dark:bg-haki-purple text-white dark:text-white shadow-lg"
+                  : "bg-light-bg-card/50 dark:bg-dark-bg-card/50 text-light-text-primary dark:text-dark-text-primary hover:bg-light-bg-card dark:hover:bg-dark-bg-card"
               )}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -277,15 +329,15 @@ export default function Skills() {
             >
               <motion.div
                 className={cn(
-                  "relative p-6 bg-white rounded-xl shadow-lg border-2 transition-all duration-300",
+                  "relative p-6 bg-light-bg-card dark:bg-dark-bg-card rounded-xl shadow-lg border-2 transition-all duration-300",
                   "hover:shadow-2xl hover:scale-105 cursor-pointer",
                   hoveredSkill === skill.name
-                    ? "border-haki-purple haki-glow"
-                    : "border-gray-200 hover:border-straw-hat"
+                    ? "border-haki-purple dark:border-haki-purple"
+                    : "border-light-border-primary dark:border-dark-border-primary hover:border-straw-hat dark:hover:border-treasure-gold"
                 )}
                 whileHover={{ y: -5 }}
               >
-                {/* Skill Icon */}
+                {/* Devil Fruit Icon */}
                 <motion.div
                   className="text-4xl mb-4 text-center"
                   animate={hoveredSkill === skill.name ? { 
@@ -294,31 +346,60 @@ export default function Skills() {
                   } : {}}
                   transition={{ duration: 0.6 }}
                 >
-                  {skill.icon}
+                  <OnePieceIcon 
+                    type={skill.characterIconType} 
+                    size="lg" 
+                    animated 
+                    className="text-straw-hat dark:text-treasure-gold" 
+                  />
                 </motion.div>
 
                 {/* Skill Name */}
-                            <h3 className="font-bold text-lg text-blue-800 mb-2 text-center">
-              {skill.name}
-            </h3>
+                <h3 className="font-bold text-lg text-light-text-primary dark:text-dark-text-primary mb-2 text-center">
+                  {skill.name}
+                </h3>
+
+                {/* Devil Fruit Name */}
+                <div className="text-center mb-3">
+                  <span className="text-xs px-2 py-1 bg-straw-hat/20 dark:bg-treasure-gold/20 text-straw-hat dark:text-treasure-gold rounded-full font-medium">
+                    {skill.devilFruit}
+                  </span>
+                </div>
+
+                {/* Character */}
+                <div className="text-center mb-3">
+                  <span className="text-sm text-light-text-accent dark:text-dark-text-accent font-medium">
+                    {skill.character}
+                  </span>
+                </div>
+
+                {/* Haki Type */}
+                <div className="text-center mb-3">
+                  <span className={cn(
+                    "text-xs px-2 py-1 rounded-full text-white font-bold",
+                    `bg-gradient-to-r ${hakiColors[skill.hakiType]}`
+                  )}>
+                    {skill.hakiType} Haki
+                  </span>
+                </div>
 
                 {/* Level Indicator */}
                 <div className="mb-3">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm text-gray-700">Level</span>
+                    <span className="text-sm text-light-text-secondary dark:text-dark-text-secondary">Level</span>
                     <span className={cn(
                       "text-xs px-2 py-1 rounded-full text-white font-bold",
-                      `bg-gradient-to-r ${levelColors[skill.level]}`
+                      `bg-gradient-to-r ${hakiColors[skill.hakiType]}`
                     )}>
                       {levelLabels[skill.level]}
                     </span>
                   </div>
                   
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-light-bg-secondary dark:bg-dark-bg-secondary rounded-full h-2">
                     <motion.div
                       className={cn(
                         "h-2 rounded-full bg-gradient-to-r",
-                        hoveredSkill === skill.name ? skill.color : levelColors[skill.level]
+                        hakiColors[skill.hakiType]
                       )}
                       initial={{ width: 0 }}
                       animate={{ width: `${(skill.level / 5) * 100}%` }}
@@ -328,26 +409,26 @@ export default function Skills() {
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-gray-700 mb-4 text-center leading-relaxed">
+                <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary mb-4 text-center leading-relaxed">
                   {skill.description}
                 </p>
 
                 {/* Projects using this skill */}
                 <div className="text-center">
-                                          <h4 className="text-xs font-semibold text-blue-800 uppercase tracking-wide mb-2">
-                          Used In:
-                        </h4>
+                  <h4 className="text-xs font-semibold text-light-text-accent dark:text-dark-text-accent uppercase tracking-wide mb-2">
+                    Used In:
+                  </h4>
                   <div className="flex flex-wrap justify-center gap-1">
                     {skill.projects.slice(0, 2).map((project, i) => (
                       <span
                         key={i}
-                                                  className="text-xs px-2 py-1 bg-blue-800/20 text-blue-800 rounded-full"
+                        className="text-xs px-2 py-1 bg-straw-hat/20 dark:bg-treasure-gold/20 text-straw-hat dark:text-treasure-gold rounded-full"
                       >
                         {project}
                       </span>
                     ))}
                     {skill.projects.length > 2 && (
-                      <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">
+                      <span className="text-xs px-2 py-1 bg-light-bg-secondary dark:bg-dark-bg-secondary text-light-text-accent dark:text-dark-text-accent rounded-full">
                         +{skill.projects.length - 2}
                       </span>
                     )}
@@ -379,9 +460,9 @@ export default function Skills() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <div className="bg-gradient-to-r from-haki-purple/10 to-ocean-blue/10 backdrop-blur-sm rounded-xl p-8 max-w-4xl mx-auto border border-haki-purple/20">
+          <div className="bg-gradient-to-r from-haki-purple/10 to-ocean-blue/10 dark:from-haki-purple/20 dark:to-ocean-blue/20 backdrop-blur-sm rounded-xl p-8 max-w-4xl mx-auto border border-haki-purple/20 dark:border-haki-purple/30">
             <motion.div
-              className="w-16 h-16 bg-haki-purple rounded-full flex items-center justify-center mx-auto mb-6 haki-glow"
+              className="w-16 h-16 bg-haki-purple dark:bg-haki-purple rounded-full flex items-center justify-center mx-auto mb-6"
               animate={{ 
                 boxShadow: [
                   "0 0 20px #6A29FF",
@@ -393,10 +474,10 @@ export default function Skills() {
             >
               <span className="text-2xl">⚡</span>
             </motion.div>
-            <h3 className="font-manga text-2xl text-blue-800 mb-4">
+            <h3 className="font-manga text-2xl text-straw-hat dark:text-treasure-gold mb-4">
               The Power of Development Haki
             </h3>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-light-text-secondary dark:text-dark-text-secondary leading-relaxed">
               Like the three types of Haki in One Piece, my development skills are categorized into different domains. 
               Each skill has been honed through real-world battles, and when combined, they create powerful applications 
               that can conquer any digital challenge. The glow you see represents the mastery level - the brighter the aura, 

@@ -13,7 +13,9 @@
 import { useState, useEffect } from "react";               // React hooks for state and side effects
 import { motion, AnimatePresence } from "framer-motion";   // Animation library for smooth transitions
 import { cn } from "@/lib/utils";                          // Utility function for conditional class names
-import { Menu, X, Compass } from "lucide-react";          // Icon components for navigation elements
+import { Menu, X } from "lucide-react";                   // Icon components for navigation elements
+import ThemeToggle from "@/components/ui/ThemeToggle";     // Theme toggle component
+import OnePieceIcon from "@/components/ui/OnePieceIcons";  // One Piece themed icons
 
 // ============================================================================
 // NAVIGATION CONFIGURATION
@@ -96,7 +98,7 @@ export default function Navigation() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300", // Fixed positioning and transitions
           scrolled 
-            ? "bg-ink-black/90 backdrop-blur-md border-b border-straw-hat/20 shadow-lg" // Scrolled state with background
+            ? "bg-light-bg-card/90 dark:bg-dark-bg-card/90 backdrop-blur-md border-b border-light-border-primary dark:border-dark-border-primary shadow-lg" // Scrolled state with background
             : "bg-transparent"                             // Transparent when at top
         )}
       >
@@ -111,8 +113,8 @@ export default function Navigation() {
               transition={{ duration: 0.5 }}                // 0.5 second rotation
               className="flex items-center space-x-2"        // Logo layout
             >
-              <Compass className="w-8 h-8 text-blue-400" /> {/* Compass icon */}
-              <span className="font-manga text-xl text-white"> {/* Log Pose text */}
+              <OnePieceIcon type="log-pose" size="lg" animated className="text-ocean-blue dark:text-grand-line" /> {/* Log Pose icon */}
+              <span className="font-manga text-xl text-light-text-primary dark:text-dark-text-primary"> {/* Log Pose text */}
                 Log Pose
               </span>
             </motion.div>
@@ -127,10 +129,10 @@ export default function Navigation() {
                   onClick={() => scrollToSection(item.href)} // Scroll to section on click
                   className={cn(
                     "relative px-3 py-2 text-sm font-medium transition-colors duration-200", // Button styling
-                    "hover:text-straw-hat focus:outline-none focus:text-straw-hat", // Hover and focus states
+                    "hover:text-straw-hat dark:hover:text-treasure-gold focus:outline-none", // Hover and focus states
                     activeSection === item.href.substring(1)  // Active section styling
-                      ? "text-straw-hat"                    // Gold color for active section
-                      : "text-white/80"                     // Semi-transparent white for inactive
+                      ? "text-straw-hat dark:text-treasure-gold" // Gold color for active section
+                      : "text-light-text-secondary dark:text-dark-text-secondary" // Theme-aware text for inactive
                   )}
                 >
                   {item.name}                               {/* Navigation item text */}
@@ -141,25 +143,31 @@ export default function Navigation() {
                   {activeSection === item.href.substring(1) && ( // Show indicator for active section
                     <motion.div
                       layoutId="activeSection"              // Shared layout ID for smooth transitions
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-straw-hat" // Gold underline
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-straw-hat dark:bg-treasure-gold" // Gold underline
                       initial={false}                       // Don't animate initial render
                       transition={{ type: "spring", stiffness: 300, damping: 30 }} // Spring animation
                     />
                   )}
                 </button>
               ))}
+              
+              {/* Theme Toggle */}
+              <ThemeToggle size="sm" />
             </div>
 
             {/* ============================================================================
-                MOBILE MENU BUTTON
+                MOBILE MENU BUTTON AND THEME TOGGLE
                 ============================================================================ */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}            // Toggle mobile menu
-              className="md:hidden p-2 text-white hover:text-blue-400 focus:outline-none" // Mobile-only button
-              aria-label="Toggle navigation menu"           // Accessibility label
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />} {/* Toggle between menu and close icons */}
-            </button>
+            <div className="md:hidden flex items-center space-x-2">
+              <ThemeToggle size="sm" />
+              <button
+                onClick={() => setIsOpen(!isOpen)}            // Toggle mobile menu
+                className="p-2 text-light-text-primary dark:text-dark-text-primary hover:text-straw-hat dark:hover:text-treasure-gold focus:outline-none" // Mobile-only button
+                aria-label="Toggle navigation menu"           // Accessibility label
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />} {/* Toggle between menu and close icons */}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -172,7 +180,7 @@ export default function Navigation() {
               initial={{ opacity: 0, height: 0 }}          // Start: invisible and collapsed
               animate={{ opacity: 1, height: "auto" }}      // Animate: visible and expanded
               exit={{ opacity: 0, height: 0 }}              // Exit: invisible and collapsed
-              className="md:hidden bg-black/95 backdrop-blur-md border-t border-straw-hat/20" // Mobile menu styling
+              className="md:hidden bg-light-bg-card/95 dark:bg-dark-bg-card/95 backdrop-blur-md border-t border-light-border-primary dark:border-dark-border-primary" // Mobile menu styling
             >
               <div className="px-4 py-4 space-y-2">         {/* Mobile menu content container */}
                 {navigationItems.map((item, index) => (      // Map through navigation items with index
@@ -184,10 +192,10 @@ export default function Navigation() {
                     onClick={() => scrollToSection(item.href)} // Scroll to section on click
                     className={cn(
                       "block w-full text-left px-4 py-3 text-base font-medium rounded-lg", // Mobile button styling
-                      "transition-colors duration-200 hover:bg-straw-hat/10", // Hover effects
+                      "transition-colors duration-200 hover:bg-straw-hat/10 dark:hover:bg-treasure-gold/10", // Hover effects
                       activeSection === item.href.substring(1)  // Active section styling
-                        ? "text-blue-400 bg-blue-400/10"    // Blue for active section
-                        : "text-white"                      // White for inactive sections
+                        ? "text-straw-hat dark:text-treasure-gold bg-straw-hat/10 dark:bg-treasure-gold/10"    // Gold for active section
+                        : "text-light-text-primary dark:text-dark-text-primary"                      // Theme-aware text for inactive sections
                     )}
                   >
                     {item.name}                             {/* Navigation item text */}
@@ -204,7 +212,7 @@ export default function Navigation() {
           ============================================================================ */}
       {/* Thin progress bar at the top showing scroll position */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-straw-hat z-50 origin-left" // Progress bar styling
+        className="fixed top-0 left-0 right-0 h-1 bg-straw-hat dark:bg-treasure-gold z-50 origin-left" // Progress bar styling
         style={{
           scaleX: typeof window !== "undefined"             // Check if running in browser
             ? window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) // Calculate progress

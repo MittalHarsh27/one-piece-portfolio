@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import WantedCard from "@/components/ui/WantedCard";
 import { Filter, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+import OnePieceIcon from "@/components/ui/OnePieceIcons";
 
 // Sample project data - replace with your actual projects
 const projects = [
@@ -19,6 +20,8 @@ const projects = [
     githubUrl: "https://github.com/example",
     image: "/projects/ecommerce.jpg",
     status: "completed" as const,
+    character: "Nami", // Navigator and money-focused character
+    characterIconType: "treasure-chest",
     impact: {
       users: "1,000+ active users",
       performance: "99.9% uptime",
@@ -36,6 +39,8 @@ const projects = [
     githubUrl: "https://github.com/example",
     image: "/projects/taskmanager.jpg",
     status: "completed" as const,
+    character: "Robin", // Scholar and organizer character
+    characterIconType: "transponder-snail",
     impact: {
       users: "500+ teams using daily",
       performance: "40% faster than competitors",
@@ -53,6 +58,8 @@ const projects = [
     githubUrl: "https://github.com/example",
     image: "/projects/weather.jpg",
     status: "completed" as const,
+    character: "Nami", // Weather expert character
+    characterIconType: "log-pose",
     impact: {
       users: "10K+ downloads",
       performance: "4.8/5 app store rating",
@@ -69,6 +76,8 @@ const projects = [
     githubUrl: "https://github.com/example",
     image: "/projects/portfolio.jpg",
     status: "in-progress" as const,
+    character: "Franky", // Builder and inventor character
+    characterIconType: "devil-fruit",
     impact: {
       achievement: "Beta testing with 100+ developers"
     }
@@ -82,6 +91,8 @@ const projects = [
     technologies: ["Solidity", "Web3.js", "React", "IPFS", "MetaMask"],
     image: "/projects/voting.jpg",
     status: "planned" as const,
+    character: "Jinbe", // Wise and justice-focused character
+    characterIconType: "straw-hat-jolly-roger",
     impact: {
       achievement: "Potential to revolutionize voting"
     }
@@ -96,6 +107,8 @@ const projects = [
     githubUrl: "https://github.com/example",
     image: "/projects/ai-reviewer.jpg",
     status: "in-progress" as const,
+    character: "Robin", // Scholar and knowledge-focused character
+    characterIconType: "devil-fruit",
     impact: {
       achievement: "Improving code quality for 50+ developers"
     }
@@ -129,15 +142,15 @@ export default function Projects() {
     <section
       id="projects"
       ref={containerRef}
-      className="relative py-20 lg:py-32 bg-gradient-to-b from-ink-black to-gray-900 text-white overflow-hidden"
+      className="relative py-20 lg:py-32 bg-gradient-to-b from-light-bg-primary via-light-bg-secondary to-light-bg-primary dark:from-dark-bg-primary dark:via-dark-bg-secondary dark:to-dark-bg-primary overflow-hidden"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-1/4 w-32 h-32">
-          <div className="w-full h-full border-2 border-straw-hat rounded-full animate-spin-slow" />
+          <div className="w-full h-full border-2 border-straw-hat dark:border-treasure-gold rounded-full animate-spin-slow" />
         </div>
         <div className="absolute bottom-1/4 right-1/4 w-24 h-24">
-                      <div className="w-full h-full border-2 border-blue-400 rounded-full animate-pulse" />
+          <div className="w-full h-full border-2 border-ocean-blue dark:border-grand-line rounded-full animate-pulse" />
         </div>
       </div>
 
@@ -150,13 +163,13 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="font-manga text-4xl sm:text-5xl lg:text-6xl text-blue-800 mb-6"
-            animate={{ textShadow: ["0 0 10px #F0B90B", "0 0 20px #F0B90B", "0 0 10px #F0B90B"] }}
+            className="font-manga text-4xl sm:text-5xl lg:text-6xl text-straw-hat dark:text-treasure-gold mb-6"
+            animate={{ textShadow: ["0 0 10px #FFD700", "0 0 20px #FFD700", "0 0 10px #FFD700"] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             Wanted Board
           </motion.h2>
-                      <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-light-text-secondary dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
             Every great pirate crew has their bounties. Here are mine - projects that showcase 
             the treasures I&apos;ve collected on my journey through the digital seas.
           </p>
@@ -171,19 +184,19 @@ export default function Projects() {
         >
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-light-text-accent dark:text-dark-text-accent" />
             <input
               type="text"
               placeholder="Search projects..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-straw-hat focus:border-transparent"
+              className="pl-10 pr-4 py-2 bg-light-bg-card/50 dark:bg-dark-bg-card/50 border border-light-border-primary dark:border-dark-border-primary rounded-lg text-light-text-primary dark:text-dark-text-primary placeholder-light-text-accent dark:placeholder-dark-text-accent focus:outline-none focus:ring-2 focus:ring-straw-hat dark:focus:ring-treasure-gold focus:border-transparent"
             />
           </div>
 
           {/* Filter buttons */}
           <div className="flex items-center space-x-2">
-            <Filter className="w-4 h-4 text-white/60" />
+            <Filter className="w-4 h-4 text-light-text-accent dark:text-dark-text-accent" />
             <div className="flex space-x-2">
               {filterOptions.map((option) => (
                 <motion.button
@@ -192,8 +205,8 @@ export default function Projects() {
                   className={cn(
                     "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300",
                     filter === option.value
-                      ? "bg-straw-hat text-black"
-                      : "bg-white/10 text-white hover:bg-white/20"
+                      ? "bg-straw-hat dark:bg-treasure-gold text-black dark:text-black"
+                      : "bg-light-bg-card/50 dark:bg-dark-bg-card/50 text-light-text-primary dark:text-dark-text-primary hover:bg-light-bg-card dark:hover:bg-dark-bg-card"
                   )}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

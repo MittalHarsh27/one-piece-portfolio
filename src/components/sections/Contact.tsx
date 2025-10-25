@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Mail, Github, Linkedin, MapPin, Phone, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import OnePieceIcon from "@/components/ui/OnePieceIcons";
 
 interface FormData {
   name: string;
@@ -95,7 +96,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={containerRef}
-      className="relative py-20 lg:py-32 bg-gradient-to-b from-ocean-blue to-ocean-blue-800 text-white overflow-hidden"
+      className="relative py-20 lg:py-32 bg-gradient-to-b from-light-bg-primary via-light-bg-secondary to-light-bg-primary dark:from-dark-bg-primary dark:via-dark-bg-secondary dark:to-dark-bg-primary overflow-hidden"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10">
@@ -103,7 +104,7 @@ export default function Contact() {
         {[...Array(5)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute text-6xl"
+            className="absolute"
             style={{
               left: `${10 + i * 20}%`,
               top: `${20 + (i % 2) * 40}%`,
@@ -119,7 +120,7 @@ export default function Contact() {
               delay: i * 0.5,
             }}
           >
-            🐌
+            <OnePieceIcon type="transponder-snail" size="xl" animated className="text-ocean-blue dark:text-grand-line" />
           </motion.div>
         ))}
         
@@ -136,9 +137,9 @@ export default function Contact() {
             ease: "easeInOut",
           }}
         >
-          <div className="w-96 h-96 border-2 border-white rounded-full" />
-          <div className="absolute top-8 left-8 w-80 h-80 border-2 border-white rounded-full" />
-          <div className="absolute top-16 left-16 w-64 h-64 border-2 border-white rounded-full" />
+          <div className="w-96 h-96 border-2 border-straw-hat dark:border-treasure-gold rounded-full" />
+          <div className="absolute top-8 left-8 w-80 h-80 border-2 border-ocean-blue dark:border-grand-line rounded-full" />
+          <div className="absolute top-16 left-16 w-64 h-64 border-2 border-haki-purple dark:border-haki-purple rounded-full" />
         </motion.div>
       </div>
 
@@ -151,19 +152,19 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="font-manga text-4xl sm:text-5xl lg:text-6xl text-blue-800 mb-6"
+            className="font-manga text-4xl sm:text-5xl lg:text-6xl text-straw-hat dark:text-treasure-gold mb-6"
             animate={{
               textShadow: [
-                "0 0 10px #F0B90B",
-                "0 0 20px #F0B90B", 
-                "0 0 10px #F0B90B"
+                "0 0 10px #FFD700",
+                "0 0 20px #FFD700", 
+                "0 0 10px #FFD700"
               ]
             }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             Send a Transponder Snail
           </motion.h2>
-          <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-light-text-secondary dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
             Ready to join the crew or start a new adventure? Drop me a message through the 
             transponder snail network. I&apos;m always excited to discuss new projects and opportunities!
           </p>
@@ -176,7 +177,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20">
+            <div className="bg-light-bg-card/90 dark:bg-dark-bg-card/90 backdrop-blur-md rounded-xl p-8 border border-light-border-primary dark:border-dark-border-primary">
               {/* Transponder Snail Header */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">
@@ -192,11 +193,11 @@ export default function Contact() {
                       ease: "easeInOut",
                     }}
                   >
-                    🐌
+                    <OnePieceIcon type="transponder-snail" size="lg" animated className="text-ocean-blue dark:text-grand-line" />
                   </motion.div>
                   <div>
-                    <h3 className="font-manga text-2xl text-blue-800">Transponder Snail</h3>
-                    <p className="text-white/70 text-sm">Status: Ready to transmit</p>
+                    <h3 className="font-manga text-2xl text-straw-hat dark:text-treasure-gold">Transponder Snail</h3>
+                    <p className="text-light-text-accent dark:text-dark-text-accent text-sm">Status: Ready to transmit</p>
                   </div>
                 </div>
                 
@@ -205,7 +206,7 @@ export default function Contact() {
                   onClick={() => setSoundEnabled(!soundEnabled)}
                   className={cn(
                     "p-2 rounded-lg transition-colors",
-                    soundEnabled ? "bg-straw-hat text-black" : "bg-white/20 text-white"
+                    soundEnabled ? "bg-straw-hat dark:bg-treasure-gold text-black dark:text-black" : "bg-light-bg-secondary dark:bg-dark-bg-secondary text-light-text-primary dark:text-dark-text-primary"
                   )}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -219,7 +220,7 @@ export default function Contact() {
                 {/* Name and Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-white/90 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-light-text-primary dark:text-dark-text-primary mb-2">
                       Captain&apos;s Name *
                     </label>
                     <input
@@ -229,12 +230,12 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-straw-hat focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 bg-light-bg-secondary dark:bg-dark-bg-secondary border border-light-border-primary dark:border-dark-border-primary rounded-lg text-light-text-primary dark:text-dark-text-primary placeholder-light-text-accent dark:placeholder-dark-text-accent focus:outline-none focus:ring-2 focus:ring-straw-hat dark:focus:ring-treasure-gold focus:border-transparent transition-all"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-light-text-primary dark:text-dark-text-primary mb-2">
                       Transponder Frequency *
                     </label>
                     <input
@@ -244,7 +245,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-straw-hat focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 bg-light-bg-secondary dark:bg-dark-bg-secondary border border-light-border-primary dark:border-dark-border-primary rounded-lg text-light-text-primary dark:text-dark-text-primary placeholder-light-text-accent dark:placeholder-dark-text-accent focus:outline-none focus:ring-2 focus:ring-straw-hat dark:focus:ring-treasure-gold focus:border-transparent transition-all"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -252,7 +253,7 @@ export default function Contact() {
 
                 {/* Subject */}
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-white/90 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-light-text-primary dark:text-dark-text-primary mb-2">
                     Mission Type
                   </label>
                   <input
@@ -261,14 +262,14 @@ export default function Contact() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-straw-hat focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-light-bg-secondary dark:bg-dark-bg-secondary border border-light-border-primary dark:border-dark-border-primary rounded-lg text-light-text-primary dark:text-dark-text-primary placeholder-light-text-accent dark:placeholder-dark-text-accent focus:outline-none focus:ring-2 focus:ring-straw-hat dark:focus:ring-treasure-gold focus:border-transparent transition-all"
                     placeholder="e.g., New Project, Job Opportunity, Collaboration"
                   />
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-white/90 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-light-text-primary dark:text-dark-text-primary mb-2">
                     Transmission Message *
                   </label>
                   <textarea
@@ -278,7 +279,7 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-straw-hat focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 bg-light-bg-secondary dark:bg-dark-bg-secondary border border-light-border-primary dark:border-dark-border-primary rounded-lg text-light-text-primary dark:text-dark-text-primary placeholder-light-text-accent dark:placeholder-dark-text-accent focus:outline-none focus:ring-2 focus:ring-straw-hat dark:focus:ring-treasure-gold focus:border-transparent transition-all resize-none"
                     placeholder="Tell me about your project, idea, or just say hello! I&apos;m always excited to hear from fellow adventurers."
                   />
                 </div>
@@ -291,8 +292,8 @@ export default function Contact() {
                     "w-full py-4 px-6 rounded-lg font-bold text-lg transition-all duration-300",
                     "flex items-center justify-center space-x-2",
                     status.type === "loading"
-                      ? "bg-gray-500 cursor-not-allowed"
-                      : "bg-straw-hat text-black hover:bg-straw-hat/90 hover:scale-105"
+                      ? "bg-light-bg-secondary dark:bg-dark-bg-secondary cursor-not-allowed text-light-text-accent dark:text-dark-text-accent"
+                      : "bg-straw-hat dark:bg-treasure-gold text-black dark:text-black hover:bg-straw-hat/90 dark:hover:bg-treasure-gold/90 hover:scale-105"
                   )}
                   whileHover={status.type !== "loading" ? { scale: 1.05 } : {}}
                   whileTap={status.type !== "loading" ? { scale: 0.95 } : {}}
@@ -300,7 +301,7 @@ export default function Contact() {
                   {status.type === "loading" ? (
                     <>
                       <motion.div
-                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                        className="w-5 h-5 border-2 border-light-text-accent dark:border-dark-text-accent border-t-transparent rounded-full"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       />
@@ -324,10 +325,10 @@ export default function Contact() {
                       className={cn(
                         "flex items-center space-x-2 p-4 rounded-lg",
                         status.type === "success"
-                          ? "bg-green-500/20 text-green-200 border border-green-500/30"
+                          ? "bg-light-success/20 dark:bg-dark-success/20 text-light-success dark:text-dark-success border border-light-success/30 dark:border-dark-success/30"
                           : status.type === "error"
-                          ? "bg-red-500/20 text-red-200 border border-red-500/30"
-                          : "bg-blue-500/20 text-blue-200 border border-blue-500/30"
+                          ? "bg-light-error/20 dark:bg-dark-error/20 text-light-error dark:text-dark-error border border-light-error/30 dark:border-dark-error/30"
+                          : "bg-light-info/20 dark:bg-dark-info/20 text-light-info dark:text-dark-info border border-light-info/30 dark:border-dark-info/30"
                       )}
                     >
                       {status.type === "success" && <CheckCircle className="w-5 h-5" />}
@@ -348,24 +349,24 @@ export default function Contact() {
             className="space-y-8"
           >
             {/* Contact Info */}
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-8 border border-white/20">
-                          <h3 className="font-manga text-2xl text-blue-800 mb-6">
-              Alternative Communication Routes
-            </h3>
+            <div className="bg-light-bg-card/90 dark:bg-dark-bg-card/90 backdrop-blur-md rounded-xl p-8 border border-light-border-primary dark:border-dark-border-primary">
+              <h3 className="font-manga text-2xl text-straw-hat dark:text-treasure-gold mb-6">
+                Alternative Communication Routes
+              </h3>
               
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-blue-800" />
-                  <span className="text-white/90">Sailing the Grand Line (Remote)</span>
+                  <MapPin className="w-5 h-5 text-ocean-blue dark:text-grand-line" />
+                  <span className="text-light-text-secondary dark:text-dark-text-secondary">Sailing the Grand Line (Remote)</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-blue-800" />
-                  <span className="text-white/90">Available via transponder snail</span>
+                  <Phone className="w-5 h-5 text-ocean-blue dark:text-grand-line" />
+                  <span className="text-light-text-secondary dark:text-dark-text-secondary">Available via transponder snail</span>
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-white/20">
-                <h4 className="font-semibold text-white mb-4">Social Channels</h4>
+              <div className="mt-8 pt-6 border-t border-light-border-primary dark:border-dark-border-primary">
+                <h4 className="font-semibold text-light-text-primary dark:text-dark-text-primary mb-4">Social Channels</h4>
                 <div className="space-y-3">
                   {socialLinks.map((link, index) => (
                     <motion.a
@@ -375,17 +376,17 @@ export default function Contact() {
                       rel="noopener noreferrer"
                       className={cn(
                         "flex items-center space-x-3 p-3 rounded-lg transition-all duration-300",
-                        "hover:bg-white/10 hover:scale-105 group"
+                        "hover:bg-light-bg-secondary dark:hover:bg-dark-bg-secondary hover:scale-105 group"
                       )}
                       initial={{ opacity: 0, x: 20 }}
                       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                       transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                       whileHover={{ x: 10 }}
                     >
-                      <link.icon className={cn("w-5 h-5 text-white/70 transition-colors", link.color)} />
+                      <link.icon className={cn("w-5 h-5 text-light-text-accent dark:text-dark-text-accent transition-colors", link.color)} />
                       <div>
-                        <div className="text-white font-medium">{link.name}</div>
-                        <div className="text-white/60 text-sm">{link.description}</div>
+                        <div className="text-light-text-primary dark:text-dark-text-primary font-medium">{link.name}</div>
+                        <div className="text-light-text-accent dark:text-dark-text-accent text-sm">{link.description}</div>
                       </div>
                     </motion.a>
                   ))}
@@ -395,7 +396,7 @@ export default function Contact() {
 
             {/* Fun Quote */}
             <motion.div
-              className="bg-gradient-to-r from-haki-purple/20 to-straw-hat/20 backdrop-blur-md rounded-xl p-8 border border-straw-hat/30"
+              className="bg-gradient-to-r from-haki-purple/20 to-straw-hat/20 dark:from-haki-purple/30 dark:to-treasure-gold/30 backdrop-blur-md rounded-xl p-8 border border-straw-hat/30 dark:border-treasure-gold/30"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -408,12 +409,12 @@ export default function Contact() {
                 >
                   ⚓
                 </motion.div>
-                <blockquote className="text-lg font-medium text-white/90 mb-4 italic">
+                <blockquote className="text-lg font-medium text-light-text-primary dark:text-dark-text-primary mb-4 italic">
                   &ldquo;The sea is vast, and there are still many things in this world that I don&apos;t know about. 
                   But right now, I have the strongest crew in the world!&rdquo;
                 </blockquote>
-                <cite className="text-blue-800 font-bold">- Monkey D. Luffy</cite>
-                <p className="text-white/70 text-sm mt-2">
+                <cite className="text-straw-hat dark:text-treasure-gold font-bold">- Monkey D. Luffy</cite>
+                <p className="text-light-text-accent dark:text-dark-text-accent text-sm mt-2">
                   Let&apos;s build something amazing together! 🏴‍☠️
                 </p>
               </div>

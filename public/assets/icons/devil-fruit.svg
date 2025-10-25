@@ -1,0 +1,23 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Devil Fruit Body -->
+  <ellipse cx="24" cy="32" rx="16" ry="12" fill="#FF4500" stroke="#DC143C" stroke-width="2"/>
+  
+  <!-- Fruit top -->
+  <ellipse cx="24" cy="20" rx="12" ry="8" fill="#FF6347" stroke="#DC143C" stroke-width="1"/>
+  
+  <!-- Stem -->
+  <rect x="22" y="12" width="4" height="8" fill="#8B4513" stroke="#654321" stroke-width="1"/>
+  
+  <!-- Leaves -->
+  <ellipse cx="20" cy="10" rx="3" ry="6" fill="#228B22" transform="rotate(-30 20 10)"/>
+  <ellipse cx="28" cy="10" rx="3" ry="6" fill="#228B22" transform="rotate(30 28 10)"/>
+  
+  <!-- Spiral pattern -->
+  <path d="M12 28 Q24 20 36 28 Q24 36 12 28" stroke="#FFD700" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M12 32 Q24 24 36 32 Q24 40 12 32" stroke="#FFD700" stroke-width="2" fill="none" opacity="0.5"/>
+  
+  <!-- Sparkle effects -->
+  <circle cx="16" cy="24" r="1" fill="#FFD700" opacity="0.8"/>
+  <circle cx="32" cy="28" r="1" fill="#FFD700" opacity="0.8"/>
+  <circle cx="20" cy="36" r="1" fill="#FFD700" opacity="0.8"/>
+</svg>

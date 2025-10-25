@@ -12,6 +12,7 @@ import type { Metadata } from "next";                    // Next.js metadata typ
 import { Inter, Bangers } from "next/font/google";       // Google Fonts for typography
 import "./globals.css";                                   // Global CSS styles
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider"; // Smooth scrolling provider
+import { ThemeProvider } from "@/components/providers/ThemeProvider"; // Theme provider for dark/light mode
 import Navigation from "@/components/navigation/Navigation"; // Main navigation component
 
 // ============================================================================
@@ -89,19 +90,21 @@ export default function RootLayout({
         // ============================================================================
         // BODY CLASSES AND ATTRIBUTES
         // ============================================================================
-        className={`${inter.variable} ${bangers.variable} antialiased font-body bg-black text-white`}
-        // Font variables for CSS usage, antialiasing, default styling
+        className={`${inter.variable} ${bangers.variable} antialiased font-body bg-light-bg-primary dark:bg-dark-bg-primary text-light-text-primary dark:text-dark-text-primary transition-colors duration-300`}
+        // Font variables for CSS usage, antialiasing, theme-aware styling
         suppressHydrationWarning={true}                   // Suppress hydration warnings for development
       >
         {/* ============================================================================
             PROVIDERS AND GLOBAL COMPONENTS
             ============================================================================ */}
-        <SmoothScrollProvider>                           {/* Provides smooth scrolling functionality */}
-          <Navigation />                                 {/* Main navigation bar */}
-          <main className="relative">                    {/* Main content area */}
-            {children}                                   {/* Render the page content */}
-          </main>
-        </SmoothScrollProvider>
+        <ThemeProvider>                                  {/* Provides theme context for dark/light mode */}
+          <SmoothScrollProvider>                         {/* Provides smooth scrolling functionality */}
+            <Navigation />                               {/* Main navigation bar */}
+            <main className="relative">                  {/* Main content area */}
+              {children}                                 {/* Render the page content */}
+            </main>
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

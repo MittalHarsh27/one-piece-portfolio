@@ -2,9 +2,8 @@
 
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import Scene from "@/components/3d/Scene";
-import Ship from "@/components/3d/Ship";
-import Ocean from "@/components/3d/Ocean";
+import Ship from "@/components/svg/Ship";
+import Ocean from "@/components/svg/Ocean";
 import { ChevronDown, Anchor } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -58,12 +57,12 @@ export default function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-sky-200 via-sky-300 to-blue-600"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-light-bg-secondary via-light-bg-accent to-light-button-secondary dark:from-dark-bg-primary dark:via-dark-bg-secondary dark:to-dark-bg-accent"
     >
       {/* Animated background clouds */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-20 left-10 w-32 h-16 bg-white/30 rounded-full blur-sm"
+          className="absolute top-20 left-10 w-32 h-16 bg-white/30 dark:bg-white/20 rounded-full blur-sm"
           animate={{
             x: [0, 50, 0],
             y: [0, -20, 0],
@@ -75,7 +74,7 @@ export default function Hero() {
           }}
         />
         <motion.div
-          className="absolute top-40 right-20 w-24 h-12 bg-white/20 rounded-full blur-sm"
+          className="absolute top-40 right-20 w-24 h-12 bg-white/20 dark:bg-white/15 rounded-full blur-sm"
           animate={{
             x: [0, -30, 0],
             y: [0, 10, 0],
@@ -86,25 +85,38 @@ export default function Hero() {
             ease: "linear",
           }}
         />
+        <motion.div
+          className="absolute top-60 left-1/4 w-20 h-10 bg-white/25 dark:bg-white/15 rounded-full blur-sm"
+          animate={{
+            x: [0, 40, 0],
+            y: [0, -15, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
       </div>
 
-      {/* 3D Ship Scene */}
+      {/* SVG Ship and Ocean Scene */}
       <motion.div
         className="absolute inset-0 z-10"
         style={{ y, opacity }}
       >
         <motion.div
           style={{ x, rotateX, rotateY }}
-          className="w-full h-full"
+          className="w-full h-full flex items-center justify-center"
         >
-          <Scene
-            cameraPosition={[3, 2, 5]}
-            cameraTarget={[0, 0, 0]}
-            className="w-full h-full"
-          >
-            <Ocean />
-            <Ship />
-          </Scene>
+          {/* Ocean background */}
+          <div className="absolute inset-0">
+            <Ocean className="w-full h-full" />
+          </div>
+          
+          {/* Ship */}
+          <div className="relative z-20">
+            <Ship className="w-80 h-48" />
+          </div>
         </motion.div>
       </motion.div>
 
@@ -118,30 +130,30 @@ export default function Hero() {
         >
           {/* Main heading */}
           <motion.h1
-            className="font-manga text-4xl sm:text-6xl lg:text-8xl text-white drop-shadow-lg"
+            className="font-manga text-4xl sm:text-6xl lg:text-8xl text-light-text-inverse dark:text-dark-text-primary drop-shadow-lg"
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <span className="block text-blue-800 drop-shadow-md">
+            <span className="block text-light-text-primary dark:text-dark-text-primary drop-shadow-md">
               SET SAIL
             </span>
-            <span className="block text-2xl sm:text-3xl lg:text-4xl font-body font-bold mt-2">
+            <span className="block text-2xl sm:text-3xl lg:text-4xl font-body font-bold mt-2 text-light-text-secondary dark:text-dark-text-secondary">
               for the Grand Line of Code
             </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg sm:text-xl lg:text-2xl text-white font-medium max-w-2xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl lg:text-2xl text-light-text-inverse dark:text-dark-text-primary font-medium max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
             Join the crew and explore a world of{" "}
-            <span className="text-straw-hat font-bold">innovative web development</span>,{" "}
+            <span className="text-straw-hat dark:text-treasure-gold font-bold">innovative web development</span>,{" "}
             <span className="text-haki-purple font-bold">creative solutions</span>, and{" "}
-            <span className="text-straw-hat font-bold">epic adventures</span> in code.
+            <span className="text-straw-hat dark:text-treasure-gold font-bold">epic adventures</span> in code.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -154,10 +166,10 @@ export default function Hero() {
             <motion.button
               onClick={() => scrollToNext()}
               className={cn(
-                "group relative px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-lg",
+                "group relative px-8 py-4 bg-light-button-primary dark:bg-dark-button-primary text-light-text-inverse dark:text-dark-text-inverse rounded-lg font-bold text-lg",
                 "transform transition-all duration-300 hover:scale-105 hover:shadow-lg",
-                "border-2 border-blue-400 hover:border-straw-hat",
-                "focus:outline-none focus:ring-2 focus:ring-straw-hat focus:ring-offset-2"
+                "border-2 border-light-border-primary dark:border-dark-border-primary hover:border-straw-hat dark:hover:border-treasure-gold",
+                "focus:outline-none focus:ring-2 focus:ring-straw-hat dark:focus:ring-treasure-gold focus:ring-offset-2"
               )}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -167,7 +179,7 @@ export default function Hero() {
                 <span>Explore the Crew</span>
               </span>
               <motion.div
-                className="absolute inset-0 bg-straw-hat rounded-lg opacity-0 group-hover:opacity-20"
+                className="absolute inset-0 bg-straw-hat dark:bg-treasure-gold rounded-lg opacity-0 group-hover:opacity-20"
                 transition={{ duration: 0.3 }}
               />
             </motion.button>
@@ -180,10 +192,10 @@ export default function Hero() {
                 }
               }}
               className={cn(
-                "px-8 py-4 bg-transparent text-white rounded-lg font-bold text-lg",
-                "border-2 border-white hover:bg-white hover:text-black",
+                "px-8 py-4 bg-transparent text-light-text-inverse dark:text-dark-text-primary rounded-lg font-bold text-lg",
+                "border-2 border-light-text-inverse dark:border-dark-text-primary hover:bg-light-text-inverse dark:hover:bg-dark-text-primary hover:text-light-text-primary dark:hover:text-dark-text-inverse",
                 "transform transition-all duration-300 hover:scale-105",
-                "focus:outline-none focus:ring-2 focus:ring-straw-hat focus:ring-offset-2"
+                "focus:outline-none focus:ring-2 focus:ring-straw-hat dark:focus:ring-treasure-gold focus:ring-offset-2"
               )}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -202,7 +214,7 @@ export default function Hero() {
         >
           <motion.button
             onClick={scrollToNext}
-            className="flex flex-col items-center space-y-2 text-white/80 hover:text-white transition-colors duration-300"
+            className="flex flex-col items-center space-y-2 text-light-text-inverse/80 dark:text-dark-text-primary/80 hover:text-light-text-inverse dark:hover:text-dark-text-primary transition-colors duration-300"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             aria-label="Scroll to next section"
@@ -215,7 +227,7 @@ export default function Hero() {
 
       {/* Parallax waves at the bottom */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ocean-blue to-transparent"
+        className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ocean-blue dark:from-dark-bg-accent to-transparent"
         style={{
           y: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
         }}
