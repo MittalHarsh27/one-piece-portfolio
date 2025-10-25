@@ -11,7 +11,6 @@
 // IMPORTS
 // ============================================================================
 import React from 'react';
-import Image from 'next/image';
 import { motion } from "framer-motion";           // Animation library for smooth transitions
 import { cn } from "@/lib/utils";                // Utility function for conditional class names
 

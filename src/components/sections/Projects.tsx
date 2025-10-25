@@ -5,10 +5,27 @@ import { motion, useInView } from "framer-motion";
 import WantedCard from "@/components/ui/WantedCard";
 import { Filter, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import OnePieceIcon from "@/components/ui/OnePieceIcons";
 
 // Sample project data - replace with your actual projects
-const projects = [
+const projects: Array<{
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  bounty: string;
+  technologies: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  image: string;
+  status: "completed" | "in-progress" | "planned";
+  character: string;
+  characterIconType: "log-pose" | "straw-hat-jolly-roger" | "devil-fruit" | "treasure-chest" | "transponder-snail" | "luffy-silhouette";
+  impact: {
+    users?: string;
+    performance?: string;
+    achievement?: string;
+  };
+}> = [
   {
     id: "ecommerce-platform",
     title: "E-Commerce Empire",

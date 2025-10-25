@@ -10,7 +10,7 @@
 // ============================================================================
 // IMPORTS
 // ============================================================================
-import { motion, AnimatePresence } from "framer-motion";           // Animation library for smooth transitions
+import { motion } from "framer-motion";           // Animation library for smooth transitions
 import { Sun, Moon } from "lucide-react";        // Icons for light and dark modes
 import { useTheme } from "@/components/providers/ThemeProvider";      // Theme context hook
 import { cn } from "@/lib/utils";                // Utility function for conditional class names
