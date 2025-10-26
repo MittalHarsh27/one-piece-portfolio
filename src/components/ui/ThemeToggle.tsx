@@ -105,8 +105,8 @@ export default function ThemeToggle({
         
         // Theme-specific styles
         theme === "light" 
-          ? "bg-light-button-accent border-light-border-primary hover:bg-light-button-primary focus:ring-light-button-primary text-light-text-inverse" 
-          : "bg-dark-button-secondary border-dark-border-secondary hover:bg-dark-button-primary focus:ring-dark-button-primary text-dark-text-primary",
+          ? "bg-straw-hat border-straw-hat hover:bg-treasure-gold focus:ring-straw-hat text-black" 
+          : "bg-ocean-blue border-ocean-blue hover:bg-haki-purple focus:ring-ocean-blue text-white",
         
         // Additional classes
         className

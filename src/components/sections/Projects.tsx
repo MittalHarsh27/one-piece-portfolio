@@ -2,11 +2,11 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import WantedCard from "@/components/ui/WantedCard";
-import { Filter, Search } from "lucide-react";
+import Image from "next/image";
+import { ExternalLink, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
+import OnePieceIcon from "@/components/ui/OnePieceIcons";
 
-// Sample project data - replace with your actual projects
 const projects: Array<{
   id: string;
   title: string;
@@ -30,14 +30,14 @@ const projects: Array<{
     id: "ecommerce-platform",
     title: "E-Commerce Empire",
     description: "A full-stack e-commerce platform with real-time inventory management",
-    longDescription: "Built a comprehensive e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, inventory management, and admin dashboard. Implemented real-time updates using WebSockets and optimized for mobile devices.",
+    longDescription: "Built a comprehensive e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, inventory management, and admin dashboard.",
     bounty: "₿50,000",
     technologies: ["React", "Node.js", "MongoDB", "Stripe", "Socket.io", "Tailwind CSS"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/example",
     image: "/projects/ecommerce.jpg",
     status: "completed" as const,
-    character: "Nami", // Navigator and money-focused character
+    character: "Nami",
     characterIconType: "treasure-chest",
     impact: {
       users: "1,000+ active users",
@@ -49,85 +49,19 @@ const projects: Array<{
     id: "task-manager",
     title: "Crew Task Manager",
     description: "A collaborative task management app with real-time synchronization",
-    longDescription: "Developed a team collaboration tool inspired by agile methodologies. Features drag-and-drop boards, real-time updates, file attachments, and team chat. Built with Next.js and PostgreSQL for optimal performance and scalability.",
+    longDescription: "Developed a team collaboration tool inspired by agile methodologies. Features drag-and-drop boards, real-time updates, file attachments, and team chat.",
     bounty: "₿35,000",
     technologies: ["Next.js", "PostgreSQL", "Prisma", "Socket.io", "TypeScript"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/example",
     image: "/projects/taskmanager.jpg",
     status: "completed" as const,
-    character: "Robin", // Scholar and organizer character
+    character: "Robin",
     characterIconType: "transponder-snail",
     impact: {
       users: "500+ teams using daily",
       performance: "40% faster than competitors",
       achievement: "Won hackathon first place"
-    }
-  },
-  {
-    id: "weather-app",
-    title: "Grand Line Weather",
-    description: "A beautiful weather app with 3D visualizations and forecasts",
-    longDescription: "Created an immersive weather experience using Three.js for 3D visualizations. Integrates multiple weather APIs for accurate forecasts and includes interactive maps, severe weather alerts, and personalized recommendations.",
-    bounty: "₿25,000",
-    technologies: ["React", "Three.js", "D3.js", "Weather API", "PWA"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/example",
-    image: "/projects/weather.jpg",
-    status: "completed" as const,
-    character: "Nami", // Weather expert character
-    characterIconType: "log-pose",
-    impact: {
-      users: "10K+ downloads",
-      performance: "4.8/5 app store rating",
-      achievement: "Featured in tech blog"
-    }
-  },
-  {
-    id: "portfolio-generator",
-    title: "Portfolio Forge",
-    description: "An AI-powered portfolio generator for developers",
-    longDescription: "Building an intelligent platform that generates personalized developer portfolios using AI. Features include GitHub integration, skill assessment, project analysis, and automatic content generation. Currently in development with beta testing underway.",
-    bounty: "₿75,000",
-    technologies: ["Next.js", "OpenAI API", "Python", "FastAPI", "Redis"],
-    githubUrl: "https://github.com/example",
-    image: "/projects/portfolio.jpg",
-    status: "in-progress" as const,
-    character: "Franky", // Builder and inventor character
-    characterIconType: "devil-fruit",
-    impact: {
-      achievement: "Beta testing with 100+ developers"
-    }
-  },
-  {
-    id: "blockchain-voting",
-    title: "Decentralized Democracy",
-    description: "A blockchain-based voting system for transparent elections",
-    longDescription: "Designing a secure, transparent voting platform using blockchain technology. Will feature voter verification, immutable ballot storage, real-time results, and comprehensive audit trails. Focused on accessibility and security.",
-    bounty: "₿100,000",
-    technologies: ["Solidity", "Web3.js", "React", "IPFS", "MetaMask"],
-    image: "/projects/voting.jpg",
-    status: "planned" as const,
-    character: "Jinbe", // Wise and justice-focused character
-    characterIconType: "straw-hat-jolly-roger",
-    impact: {
-      achievement: "Potential to revolutionize voting"
-    }
-  },
-  {
-    id: "ai-code-reviewer",
-    title: "Code Sensei AI",
-    description: "An AI assistant for code review and optimization",
-    longDescription: "Developing an intelligent code review system that provides detailed feedback, suggests optimizations, and helps maintain code quality. Uses machine learning to understand coding patterns and best practices across multiple languages.",
-    bounty: "₿60,000",
-    technologies: ["Python", "TensorFlow", "FastAPI", "Docker", "GitHub API"],
-    githubUrl: "https://github.com/example",
-    image: "/projects/ai-reviewer.jpg",
-    status: "in-progress" as const,
-    character: "Robin", // Scholar and knowledge-focused character
-    characterIconType: "devil-fruit",
-    impact: {
-      achievement: "Improving code quality for 50+ developers"
     }
   }
 ];
@@ -143,32 +77,61 @@ export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
   const [filter, setFilter] = useState("all");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
 
   const filteredProjects = projects.filter(project => {
     const matchesFilter = filter === "all" || project.status === filter;
-    const matchesSearch = searchTerm === "" || 
-      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
-    
-    return matchesFilter && matchesSearch;
+    return matchesFilter;
   });
 
   return (
     <section
       id="projects"
       ref={containerRef}
-      className="relative py-20 lg:py-32 bg-gradient-to-b from-light-bg-primary via-light-bg-secondary to-light-bg-primary dark:from-dark-bg-primary dark:via-dark-bg-secondary dark:to-dark-bg-primary overflow-hidden"
+      className="relative py-20 lg:py-32 bg-gradient-to-b from-light-bg-primary via-ocean-blue/10 to-light-bg-primary dark:from-dark-bg-primary dark:via-ocean-blue/20 dark:to-dark-bg-primary overflow-hidden"
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-32 h-32">
-          <div className="w-full h-full border-2 border-straw-hat dark:border-treasure-gold rounded-full animate-spin-slow" />
-        </div>
-        <div className="absolute bottom-1/4 right-1/4 w-24 h-24">
-          <div className="w-full h-full border-2 border-ocean-blue dark:border-grand-line rounded-full animate-pulse" />
-        </div>
+      {/* Background decorative elements with One Piece images */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 right-20 w-48 h-48 opacity-10"
+          animate={{
+            y: [0, -30, 0],
+            rotate: [0, 5, -5, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <Image
+            src="/assets/images/one-piece-logos/ChatGPT Image Oct 25, 2025, 06_14_36 PM.png"
+            alt=""
+            fill
+            className="object-contain"
+            unoptimized
+          />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-40 left-10 w-64 h-64 opacity-5"
+          animate={{
+            y: [0, 20, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <Image
+            src="/assets/images/one-piece-logos/ChatGPT Image Oct 25, 2025, 06_16_21 PM.png"
+            alt=""
+            fill
+            className="object-contain"
+            unoptimized
+          />
+        </motion.div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -176,131 +139,151 @@ export default function Projects() {
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="font-manga text-4xl sm:text-5xl lg:text-6xl text-straw-hat dark:text-treasure-gold mb-6"
-            animate={{ textShadow: ["0 0 10px #FFD700", "0 0 20px #FFD700", "0 0 10px #FFD700"] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="font-manga text-5xl sm:text-6xl lg:text-7xl mb-6 text-ocean-blue dark:text-treasure-gold"
+            initial={{ scale: 0.9 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            Wanted Board
+            My Treasures
           </motion.h2>
-          <p className="text-lg sm:text-xl text-light-text-secondary dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Every great pirate crew has their bounties. Here are mine - projects that showcase 
-            the treasures I&apos;ve collected on my journey through the digital seas.
+          <p className="text-xl sm:text-2xl text-light-text-secondary dark:text-dark-text-secondary max-w-3xl mx-auto leading-relaxed">
+            Projects that showcase the treasures I&apos;ve collected on my journey through the digital seas
           </p>
         </motion.div>
 
-        {/* Filters and Search */}
+        {/* Filters */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 mb-12 justify-center items-center"
+          className="flex flex-wrap gap-3 justify-center mb-12"
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-light-text-accent dark:text-dark-text-accent" />
-            <input
-              type="text"
-              placeholder="Search projects..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 bg-light-bg-card/50 dark:bg-dark-bg-card/50 border border-light-border-primary dark:border-dark-border-primary rounded-lg text-light-text-primary dark:text-dark-text-primary placeholder-light-text-accent dark:placeholder-dark-text-accent focus:outline-none focus:ring-2 focus:ring-straw-hat dark:focus:ring-treasure-gold focus:border-transparent"
-            />
-          </div>
-
-          {/* Filter buttons */}
-          <div className="flex items-center space-x-2">
-            <Filter className="w-4 h-4 text-light-text-accent dark:text-dark-text-accent" />
-            <div className="flex space-x-2">
-              {filterOptions.map((option) => (
-                <motion.button
-                  key={option.value}
-                  onClick={() => setFilter(option.value)}
-                  className={cn(
-                    "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300",
-                    filter === option.value
-                      ? "bg-straw-hat dark:bg-treasure-gold text-black dark:text-black"
-                      : "bg-light-bg-card/50 dark:bg-dark-bg-card/50 text-light-text-primary dark:text-dark-text-primary hover:bg-light-bg-card dark:hover:bg-dark-bg-card"
-                  )}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {option.label}
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Projects Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          layout
-        >
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              layout
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <WantedCard project={project} index={index} />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* No results message */}
-        {filteredProjects.length === 0 && (
-          <motion.div
-            className="text-center py-16"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="text-6xl mb-4">🏴‍☠️</div>
-            <h3 className="font-manga text-2xl text-blue-800 mb-2">
-              No Bounties Found
-            </h3>
-            <p className="text-white/60">
-              No projects match your search criteria. Try adjusting your filters or search term.
-            </p>
-          </motion.div>
-        )}
-
-        {/* Call to Action */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <div className="bg-gradient-to-r from-ocean-blue to-haki-purple rounded-xl p-8 max-w-2xl mx-auto">
-            <h3 className="font-manga text-2xl text-white mb-4">
-              Ready to Set Sail Together?
-            </h3>
-            <p className="text-white/90 mb-6">
-              These are just some of the adventures I&apos;ve completed. Let&apos;s create something amazing together!
-            </p>
+          {filterOptions.map((option) => (
             <motion.button
-              onClick={() => {
-                const contactSection = document.getElementById("contact");
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              className="bg-straw-hat text-black px-8 py-3 rounded-lg font-bold hover:bg-straw-hat/90 transition-colors"
+              key={option.value}
+              onClick={() => setFilter(option.value)}
+              className={cn(
+                "px-6 py-3 rounded-xl font-bold text-lg transition-all duration-300",
+                filter === option.value
+                  ? "bg-treasure-gold text-ocean-blue shadow-lg scale-105"
+                  : "bg-light-bg-card dark:bg-dark-bg-card text-light-text-primary dark:text-dark-text-primary hover:scale-105 border-2 border-straw-hat/30 dark:border-treasure-gold/30"
+              )}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Start a New Adventure
+              {option.label}
             </motion.button>
-          </div>
+          ))}
         </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className={cn(
+                "relative group cursor-pointer",
+                "bg-light-bg-card dark:bg-dark-bg-card rounded-3xl overflow-hidden",
+                "shadow-lg border-4 border-transparent",
+                "hover:border-treasure-gold dark:hover:border-straw-hat",
+                "transform transition-all duration-300 hover:scale-105"
+              )}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              onMouseEnter={() => setSelectedProject(project.id)}
+              onMouseLeave={() => setSelectedProject(null)}
+            >
+              {/* Bounty Banner */}
+              <div className="absolute top-4 right-4 z-20 bg-treasure-gold text-ocean-blue px-4 py-2 rounded-full font-bold text-lg shadow-xl">
+                {project.bounty}
+              </div>
+
+              {/* Icon Badge */}
+              <div className="absolute top-4 left-4 z-20 w-16 h-16 bg-ocean-blue/90 dark:bg-ocean-blue/90 rounded-full flex items-center justify-center border-4 border-white dark:border-dark-bg-primary">
+                <OnePieceIcon
+                  type={project.characterIconType}
+                  size="lg"
+                  animated={selectedProject === project.id}
+                />
+              </div>
+
+              {/* Project Image Placeholder */}
+              <div className="relative h-48 bg-gradient-to-br from-ocean-blue to-dark-bg-primary">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-white/50 text-6xl">📦</span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-2xl font-bold mb-2 text-light-text-primary dark:text-dark-text-primary">
+                  {project.title}
+                </h3>
+                
+                <p className="text-light-text-secondary dark:text-dark-text-secondary mb-4">
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-straw-hat/20 dark:bg-treasure-gold/20 text-straw-hat dark:text-treasure-gold rounded-full text-sm font-semibold"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex gap-4">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-ocean-blue text-white rounded-lg font-bold hover:bg-ocean-blue/80 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Live
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-dark-bg-primary dark:bg-light-bg-primary text-light-text-primary dark:text-dark-text-primary rounded-lg font-bold hover:opacity-80 transition-opacity border-2"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Github className="w-4 h-4" />
+                      Code
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Status Badge */}
+              <div className="absolute bottom-4 right-4">
+                <span className={cn(
+                  "px-3 py-1 rounded-full text-sm font-bold",
+                  project.status === "completed" && "bg-green-500 text-white",
+                  project.status === "in-progress" && "bg-yellow-500 text-white",
+                  project.status === "planned" && "bg-blue-500 text-white"
+                )}>
+                  {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

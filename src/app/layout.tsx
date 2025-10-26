@@ -82,26 +82,16 @@ export default function RootLayout({
   children: React.ReactNode;                             // TypeScript type for children
 }>) {
   return (
-    // ============================================================================
-    // HTML STRUCTURE
-    // ============================================================================
-    <html lang="en" className="scroll-smooth">           {/* EDIT: Change language if needed */}
+    <html lang="en" className="scroll-smooth">
       <body
-        // ============================================================================
-        // BODY CLASSES AND ATTRIBUTES
-        // ============================================================================
         className={`${inter.variable} ${bangers.variable} antialiased font-body bg-light-bg-primary dark:bg-dark-bg-primary text-light-text-primary dark:text-dark-text-primary transition-colors duration-300`}
-        // Font variables for CSS usage, antialiasing, theme-aware styling
-        suppressHydrationWarning={true}                   // Suppress hydration warnings for development
+        suppressHydrationWarning={true}
       >
-        {/* ============================================================================
-            PROVIDERS AND GLOBAL COMPONENTS
-            ============================================================================ */}
-        <ThemeProvider>                                  {/* Provides theme context for dark/light mode */}
-          <SmoothScrollProvider>                         {/* Provides smooth scrolling functionality */}
-            <Navigation />                               {/* Main navigation bar */}
-            <main className="relative">                  {/* Main content area */}
-              {children}                                 {/* Render the page content */}
+        <ThemeProvider>
+          <SmoothScrollProvider>
+            <Navigation />
+            <main className="relative">
+              {children}
             </main>
           </SmoothScrollProvider>
         </ThemeProvider>

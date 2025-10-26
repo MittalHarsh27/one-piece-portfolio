@@ -214,7 +214,7 @@ export default function Navigation() {
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-straw-hat dark:bg-treasure-gold z-50 origin-left" // Progress bar styling
         style={{
-          scaleX: typeof window !== "undefined"             // Check if running in browser
+          scaleX: typeof window !== "undefined" && typeof document !== "undefined"
             ? window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) // Calculate progress
             : 0                                             // Default to 0 for SSR
         }}

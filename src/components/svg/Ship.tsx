@@ -64,19 +64,19 @@ export default function Ship({ className, animated = true }: ShipProps) {
         />
         
         {/* Ship hull */}
-        <ellipse cx="100" cy="85" rx="45" ry="15" fill="#8B4513" stroke="#654321" stroke-width="2"/>
+        <ellipse cx="100" cy="85" rx="45" ry="15" fill="#8B4513" stroke="#654321" strokeWidth="2"/>
         
         {/* Hull bottom */}
         <ellipse cx="100" cy="95" rx="50" ry="8" fill="#654321"/>
         
         {/* Main deck */}
-        <rect x="60" y="70" width="80" height="15" fill="#D4AF37" stroke="#B8860B" stroke-width="1"/>
+        <rect x="60" y="70" width="80" height="15" fill="#D4AF37" stroke="#B8860B" strokeWidth="1"/>
         
         {/* Main mast */}
         <rect x="98" y="30" width="4" height="45" fill="#654321"/>
         
         {/* Main sail */}
-        <ellipse cx="100" cy="50" rx="25" ry="20" fill="#F5F5DC" stroke="#D4AF37" stroke-width="2"/>
+        <ellipse cx="100" cy="50" rx="25" ry="20" fill="#F5F5DC" stroke="#D4AF37" strokeWidth="2"/>
         
         {/* Straw Hat Jolly Roger on sail */}
         <circle cx="100" cy="45" r="8" fill="#000000"/>
@@ -84,37 +84,37 @@ export default function Ship({ className, animated = true }: ShipProps) {
         <ellipse cx="100" cy="44" rx="5" ry="3" fill="#8B4513"/>
         
         {/* Crossbones on sail */}
-        <line x1="92" y1="48" x2="108" y2="48" stroke="#FFFFFF" stroke-width="2"/>
-        <line x1="100" y1="40" x2="100" y2="56" stroke="#FFFFFF" stroke-width="2"/>
+        <line x1="92" y1="48" x2="108" y2="48" stroke="#FFFFFF" strokeWidth="2"/>
+        <line x1="100" y1="40" x2="100" y2="56" stroke="#FFFFFF" strokeWidth="2"/>
         
         {/* Front mast */}
         <rect x="75" y="50" width="3" height="25" fill="#654321"/>
         
         {/* Front sail */}
-        <ellipse cx="77" cy="60" rx="15" ry="12" fill="#F5F5DC" stroke="#D4AF37" stroke-width="1"/>
+        <ellipse cx="77" cy="60" rx="15" ry="12" fill="#F5F5DC" stroke="#D4AF37" strokeWidth="1"/>
         
         {/* Rear mast */}
         <rect x="125" y="55" width="3" height="20" fill="#654321"/>
         
         {/* Rear sail */}
-        <ellipse cx="127" cy="63" rx="12" ry="10" fill="#F5F5DC" stroke="#D4AF37" stroke-width="1"/>
+        <ellipse cx="127" cy="63" rx="12" ry="10" fill="#F5F5DC" stroke="#D4AF37" strokeWidth="1"/>
         
         {/* Ship's figurehead - Lion */}
-        <ellipse cx="55" cy="80" rx="8" ry="6" fill="#D4AF37" stroke="#B8860B" stroke-width="1"/>
+        <ellipse cx="55" cy="80" rx="8" ry="6" fill="#D4AF37" stroke="#B8860B" strokeWidth="1"/>
         <circle cx="52" cy="78" r="2" fill="#000000"/>
         <circle cx="58" cy="78" r="2" fill="#000000"/>
-        <path d="M50 82 Q55 85 60 82" stroke="#000000" stroke-width="1" fill="none"/>
+        <path d="M50 82 Q55 85 60 82" stroke="#000000" strokeWidth="1" fill="none"/>
         
         {/* Crow's nest */}
-        <rect x="95" y="25" width="10" height="8" fill="#8B4513" stroke="#654321" stroke-width="1"/>
+        <rect x="95" y="25" width="10" height="8" fill="#8B4513" stroke="#654321" strokeWidth="1"/>
         
         {/* Flag at the top */}
         <rect x="98" y="20" width="6" height="8" fill="#FFD700"/>
         <ellipse cx="101" cy="22" rx="2" ry="2" fill="#000000"/>
         
         {/* Ropes */}
-        <line x1="100" y1="30" x2="77" y2="50" stroke="#8B4513" stroke-width="1" opacity="0.7"/>
-        <line x1="100" y1="30" x2="127" y2="55" stroke="#8B4513" stroke-width="1" opacity="0.7"/>
+        <line x1="100" y1="30" x2="77" y2="50" stroke="#8B4513" strokeWidth="1" opacity="0.7"/>
+        <line x1="100" y1="30" x2="127" y2="55" stroke="#8B4513" strokeWidth="1" opacity="0.7"/>
         
         {/* Water splash effects */}
         <motion.circle
