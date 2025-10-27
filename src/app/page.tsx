@@ -8,11 +8,17 @@
 // ============================================================================
 // SECTION COMPONENT IMPORTS
 // ============================================================================
-import Hero from "@/components/sections/Hero";             // Hero section with main introduction and 3D effects
-import About from "@/components/sections/About";           // About section with timeline and personal story
-import Projects from "@/components/sections/Projects";     // Projects section showcasing your work
-import Skills from "@/components/sections/Skills";         // Skills section displaying your technical abilities
-import Contact from "@/components/sections/Contact";       // Contact section for getting in touch
+// You can choose between the original animated sections or the clean enhanced versions
+// Original sections: Hero, About, Projects, Skills, Contact
+// Enhanced sections: EnhancedHero, EnhancedAbout, EnhancedProjects, EnhancedSkills, Publications, EnhancedContact
+
+import EnhancedHero from "@/components/sections/EnhancedHero";
+import EnhancedAbout from "@/components/sections/EnhancedAbout";
+import EnhancedProjects from "@/components/sections/EnhancedProjects";
+import EnhancedSkills from "@/components/sections/EnhancedSkills";
+import Publications from "@/components/sections/Publications";
+import EnhancedContact from "@/components/sections/EnhancedContact";
+import { OnePieceEasterEgg } from "@/components/ui/OnePieceQuotes";
 
 // ============================================================================
 // HOME PAGE COMPONENT
@@ -32,11 +38,15 @@ export default function Home() {
           Each section represents a different part of your portfolio
           You can customize the order, add new sections, or modify existing ones */}
       
-      <Hero />                                            {/* EDIT: Customize hero section with your intro */}
-      <About />                                           {/* EDIT: Customize about section with your story */}
-      <Projects />                                        {/* EDIT: Customize projects section with your work */}
-      <Skills />                                          {/* EDIT: Customize skills section with your abilities */}
-      <Contact />                                         {/* EDIT: Customize contact section with your info */}
+      <EnhancedHero />                                    {/* Clean hero with One Piece quotes */}
+      <EnhancedAbout />                                   {/* About with journey timeline */}
+      <EnhancedProjects />                                {/* Projects with Straw Hat crew theming */}
+      <EnhancedSkills />                                  {/* Skills with Devil Fruit powers */}
+      <Publications />                                    {/* Publications & achievements */}
+      <EnhancedContact />                                 {/* Clean contact section */}
+      
+      {/* Hidden Easter Egg - Click the straw hat 5 times! */}
+      <OnePieceEasterEgg />
       
       {/* ============================================================================
           ADDITIONAL SECTIONS

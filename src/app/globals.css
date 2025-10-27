@@ -63,22 +63,27 @@
 /* ============================================================================
    CUSTOM SCROLLBAR STYLING
    ============================================================================ */
-/* One Piece themed scrollbar with ocean blue and gold colors */
+/* Clean, minimal scrollbar with subtle theming */
 ::-webkit-scrollbar {
-  width: 8px;                                            /* Scrollbar width */
+  width: 10px;                                           /* Scrollbar width */
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--parchment);                          /* Track background color */
+  background: transparent;                               /* Transparent track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--ocean-blue);                         /* Thumb color (ocean blue) */
-  border-radius: 4px;                                    /* Rounded corners */
+  background: rgba(14, 115, 184, 0.3);                  /* Semi-transparent ocean blue */
+  border-radius: 5px;                                    /* Rounded corners */
+  border: 2px solid transparent;                         /* Spacing effect */
+  background-clip: padding-box;                          /* Clip to padding box */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--straw-hat-gold);                     /* Hover color (straw hat gold) */
+  background: rgba(240, 185, 11, 0.6);                  /* Gold on hover */
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 /* ============================================================================
@@ -108,13 +113,15 @@
 /* ============================================================================
    BASE BODY STYLES
    ============================================================================ */
-/* Global body styling with One Piece theme */
+/* Global body styling with clean, modern design */
 body {
   background: var(--background);                         /* Use CSS variable for background */
   color: var(--foreground);                              /* Use CSS variable for text color */
   font-family: var(--font-body);                         /* Use Inter font for body text */
   line-height: 1.6;                                      /* Comfortable reading line height */
   overflow-x: hidden;                                    /* Prevent horizontal scrolling */
+  -webkit-font-smoothing: antialiased;                   /* Smooth fonts on WebKit */
+  -moz-osx-font-smoothing: grayscale;                    /* Smooth fonts on Firefox */
 }
 
 /* ============================================================================
