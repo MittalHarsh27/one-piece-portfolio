@@ -85,7 +85,7 @@ export default function Publications() {
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <StrawHatIcon size="xl" className="text-treasure-gold" />
+            <Trophy className="w-12 h-12 text-treasure-gold" />
           </motion.div>
 
           <motion.h2
@@ -188,7 +188,7 @@ export default function Publications() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-ocean-blue/10 to-treasure-gold/10 border border-neutral-200 dark:border-neutral-800 rounded-2xl backdrop-blur-sm">
-            <StrawHatIcon size="md" className="text-treasure-gold" />
+            <Trophy className="w-6 h-6 text-treasure-gold" />
             <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300">
               <strong>Total Bounty Earned:</strong> ₿225,000 - The journey continues!
             </p>

@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Github, Star } from "lucide-react";
+import { ExternalLink, Github, Star, Package } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
 import CleanButton from "@/components/ui/CleanButton";
@@ -165,7 +165,7 @@ export default function EnhancedProjects() {
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <StrawHatIcon size="xl" className="text-treasure-gold" />
+            <Package className="w-12 h-12 text-treasure-gold" />
           </motion.div>
 
           <motion.h2
@@ -240,7 +240,6 @@ export default function EnhancedProjects() {
                   {/* Character Badge */}
                   <div className="relative z-10">
                     <Badge variant="blue" className="backdrop-blur-sm">
-                      <StrawHatIcon size="sm" className="mr-1" />
                       {project.character}&apos;s Project
                     </Badge>
                   </div>

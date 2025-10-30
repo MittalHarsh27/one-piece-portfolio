@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Linkedin, Github, MapPin, Send } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, Send, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CleanButton from "@/components/ui/CleanButton";
 import StrawHatIcon from "@/components/ui/StrawHatIcon";
@@ -73,7 +73,7 @@ export default function EnhancedContact() {
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <StrawHatIcon size="xl" className="text-treasure-gold" />
+            <MessageCircle className="w-12 h-12 text-treasure-gold" />
           </motion.div>
 
           <motion.h2

@@ -50,11 +50,137 @@
 }
 
 /* ============================================================================
-   DARK MODE SUPPORT
+   DARK MODE SUPPORT - COMPLETE 180 DEGREE COLOR INVERSION
    ============================================================================ */
-/* Automatically switch colors based on user's system preference */
+
+/* Dark mode via class (takes precedence over system preference) */
+.dark {
+  --background: #0C0C0C;                               /* Dark background for dark mode */
+  --foreground: #F6F1E4;                               /* Light text for dark mode */
+  color-scheme: dark;                                   /* Tell browser we're in dark mode */
+}
+
+/* Dark mode section backgrounds */
+.dark section {
+  background-color: rgb(10, 10, 15) !important;        /* Dark background for sections */
+}
+
+/* Background color inversions - Complete 180 degree flip */
+.dark .bg-white,
+.dark [class*="bg-white/"] {
+  background-color: rgb(10, 10, 15) !important;        /* White → Very dark */
+}
+
+.dark .bg-neutral-50,
+.dark [class*="bg-neutral-50/"] {
+  background-color: rgb(30, 30, 35) !important;        /* Lightest gray → Very dark */
+}
+
+.dark .bg-neutral-100,
+.dark [class*="bg-neutral-100/"] {
+  background-color: rgb(40, 40, 45) !important;        /* Very light gray → Dark gray */
+}
+
+.dark .bg-neutral-200,
+.dark [class*="bg-neutral-200/"] {
+  background-color: rgb(50, 50, 55) !important;        /* Light gray → Medium dark */
+}
+
+.dark .bg-neutral-300,
+.dark [class*="bg-neutral-300/"] {
+  background-color: rgb(60, 60, 65) !important;        /* Medium-light → Medium dark */
+}
+
+/* Text color inversions - Complete flip */
+.dark .text-neutral-900 {
+  color: rgb(245, 245, 245) !important;                /* Almost black → Almost white */
+}
+
+.dark .text-neutral-800 {
+  color: rgb(229, 229, 229) !important;                /* Dark gray → Light gray */
+}
+
+.dark .text-neutral-700 {
+  color: rgb(212, 212, 212) !important;                /* Medium dark → Light */
+}
+
+.dark .text-neutral-600 {
+  color: rgb(163, 163, 163) !important;                /* Medium → Medium light */
+}
+
+.dark .text-neutral-500 {
+  color: rgb(163, 163, 163) !important;                /* Gray → Light gray */
+}
+
+.dark .text-neutral-400 {
+  color: rgb(212, 212, 212) !important;                /* Light gray → Lighter */
+}
+
+.dark .text-neutral-300 {
+  color: rgb(229, 229, 229) !important;                /* Very light → Very light */
+}
+
+/* Border color inversions */
+.dark .border-neutral-200 {
+  border-color: rgb(64, 64, 64) !important;            /* Light border → Dark border */
+}
+
+.dark .border-neutral-300 {
+  border-color: rgb(82, 82, 82) !important;            /* Light border → Medium dark */
+}
+
+.dark .border-neutral-800 {
+  border-color: rgb(64, 64, 64) !important;            /* Dark border → Medium dark */
+}
+
+/* Additional comprehensive inversions - COMPLETE 180 DEGREE COLOR FLIP */
+.dark .text-white {
+  color: rgb(245, 245, 245) !important;                /* Keep white text visible */
+}
+
+.dark .text-black {
+  color: rgb(245, 245, 245) !important;                /* Black → White (complete inversion) */
+}
+
+/* Gray background inversions */
+.dark .bg-gray-50,
+.dark .bg-gray-100 {
+  background-color: rgb(30, 30, 35) !important;        /* Light grays → Dark (inversion) */
+}
+
+.dark .bg-gray-200 {
+  background-color: rgb(50, 50, 55) !important;        /* Medium light → Dark */
+}
+
+.dark .bg-gray-800,
+.dark .bg-gray-900,
+.dark .bg-black {
+  background-color: rgb(10, 10, 15) !important;        /* Dark grays/black → Very dark */
+}
+
+/* Gray text inversions */
+.dark .text-gray-900,
+.dark .text-gray-800 {
+  color: rgb(245, 245, 245) !important;                /* Very dark text → Very light (inversion) */
+}
+
+.dark .text-gray-700 {
+  color: rgb(212, 212, 212) !important;                /* Dark text → Light (inversion) */
+}
+
+.dark .text-gray-600,
+.dark .text-gray-500 {
+  color: rgb(163, 163, 163) !important;                /* Medium → Medium light (inversion) */
+}
+
+.dark .text-gray-400,
+.dark .text-gray-300 {
+  color: rgb(115, 115, 115) !important;                /* Light gray → Medium dark (inversion) */
+}
+
+/* Fallback: Automatically switch colors based on user's system preference */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     --background: #0C0C0C;                               /* Dark background for dark mode */
     --foreground: #F6F1E4;                               /* Light text for dark mode */
   }

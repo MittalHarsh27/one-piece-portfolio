@@ -161,7 +161,7 @@ export default function EnhancedSkills() {
             transition={{ duration: 0.6 }}
           >
             <div className="relative">
-              <StrawHatIcon size="xl" className="text-treasure-gold" />
+              <Sparkles className="w-12 h-12 text-treasure-gold" />
               <motion.div
                 className="absolute -inset-2 bg-treasure-gold/20 rounded-full blur-xl"
                 animate={{

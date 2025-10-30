@@ -112,7 +112,6 @@ export default function EnhancedHero() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <Badge variant="gold" className="text-sm">
-                  <StrawHatIcon size="sm" className="mr-1.5" />
                   Welcome Aboard the Crew
                 </Badge>
               </motion.div>
@@ -212,7 +211,6 @@ export default function EnhancedHero() {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="absolute -bottom-4 left-6 flex items-center gap-2 rounded-full bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md px-4 py-2 border border-neutral-200 dark:border-neutral-800 shadow-xl"
             >
-              <StrawHatIcon size="sm" />
               <span className="text-sm font-medium">Professional • Creative • Inspired</span>
             </motion.div>
           </motion.div>

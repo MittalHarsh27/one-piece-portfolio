@@ -36,17 +36,16 @@ interface OnePieceIconProps {
 }
 
 // ============================================================================
-// PNG ICON MAPPING
+// ICON MAPPING (SVG)
 // ============================================================================
-// Map icon types to their corresponding PNG image paths
-// You can replace these with specific images from your collection
+// Map icon types to their corresponding SVG icon paths
 const iconImages: Record<OnePieceIconType, string> = {
-  "log-pose": "/assets/images/one-piece-logos/ChatGPT Image Oct 25, 2025, 05_01_17 PM.png",
-  "straw-hat-jolly-roger": "/assets/images/one-piece-logos/ChatGPT Image Oct 25, 2025, 05_05_59 PM.png",
-  "devil-fruit": "/assets/images/one-piece-logos/ChatGPT Image Oct 25, 2025, 05_08_34 PM.png",
-  "treasure-chest": "/assets/images/one-piece-logos/ChatGPT Image Oct 25, 2025, 05_15_40 PM.png",
-  "transponder-snail": "/assets/images/one-piece-logos/ChatGPT Image Oct 25, 2025, 05_18_13 PM.png",
-  "luffy-silhouette": "/assets/images/one-piece-logos/ChatGPT Image Oct 25, 2025, 05_19_43 PM.png",
+  "log-pose": "/assets/icons/log-pose.svg",
+  "straw-hat-jolly-roger": "/assets/icons/straw-hat-jolly-roger.svg",
+  "devil-fruit": "/assets/icons/devil-fruit.svg",
+  "treasure-chest": "/assets/icons/treasure-chest.svg",
+  "transponder-snail": "/assets/icons/transponder-snail.svg",
+  "luffy-silhouette": "/assets/images/one-piece-logos/Luffy-Smiling-Transparent-Background-2D.png",
 };
 
 // ============================================================================

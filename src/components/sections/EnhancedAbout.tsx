@@ -54,7 +54,7 @@ const JOURNEY_MILESTONES = [
     badge: "New World"
   },
   {
-    year: "2023-2024",
+    year: "2024",
     title: "Master's Thesis",
     description: "Conducted research on self-driving perception, pushing boundaries of what's possible.",
     badge: "Laugh Tale"
@@ -92,7 +92,7 @@ export default function EnhancedAbout() {
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <StrawHatIcon size="xl" className="text-treasure-gold" />
+            <Compass className="w-12 h-12 text-treasure-gold" />
           </motion.div>
 
           <motion.h2
