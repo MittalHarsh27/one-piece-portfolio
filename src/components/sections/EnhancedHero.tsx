@@ -4,9 +4,11 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import StrawHatIcon from "@/components/ui/StrawHatIcon";
 import CleanButton from "@/components/ui/CleanButton";
 import Badge from "@/components/ui/Badge";
+import SceneWrapper from "@/components/3d/SceneWrapper";
+import StylizedOcean from "@/components/3d/StylizedOcean";
+import FloatingImage from "@/components/3d/FloatingImage";
 
 const ONE_PIECE_QUOTES = [
   "I don't want to conquer anything. I just think the guy with the most freedom in this entire ocean is the Pirate King!",
@@ -50,53 +52,33 @@ export default function EnhancedHero() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950"
     >
-      {/* Subtle animated background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-20 right-10 w-96 h-96 opacity-5 dark:opacity-10"
-          animate={{
-            y: [0, -30, 0],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <Image
-            src="/assets/images/one-piece-logos/Luffy-Transparent-Background-3D.png"
-            alt=""
-            fill
-            className="object-contain"
-            unoptimized
+      {/* 3D Background */}
+      <SceneWrapper className="absolute inset-0 z-0">
+        {/* Ocean at the bottom */}
+        <StylizedOcean />
+        
+        {/* Floating Elements replacing the previous 2D images */}
+        <FloatingImage 
+          imgSrc="/assets/images/one-piece-logos/Luffy-Transparent-Background-3D.png"
+          position={[4, 2, -5]}
+          scale={3}
+          rotation={[0, -0.2, 0.1]}
+          speed={0.8}
+        />
+        
+        <FloatingImage 
+          imgSrc="/assets/images/one-piece-logos/Ship-Transparent-Background-3D.png"
+          position={[-4, -1, -4]}
+          scale={3}
+          rotation={[0, 0.2, -0.1]}
+          speed={0.6}
           />
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-20 left-10 w-80 h-80 opacity-5 dark:opacity-10"
-          animate={{
-            y: [0, 20, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <Image
-            src="/assets/images/one-piece-logos/Ship-Transparent-Background-3D.png"
-            alt=""
-            fill
-            className="object-contain"
-            unoptimized
-          />
-        </motion.div>
-      </div>
+      </SceneWrapper>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Added pointer-events-none to container and pointer-events-auto to interactive children so 3D background is clickable if needed */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pointer-events-none">
+        <div className="grid lg:grid-cols-2 gap-12 items-center pointer-events-auto">
           {/* Left Column - Text Content */}
           <div>
             <motion.div
@@ -219,4 +201,3 @@ export default function EnhancedHero() {
     </section>
   );
 }
-

@@ -1,325 +1,54 @@
-/* ============================================================================
-   GLOBAL CSS STYLES
-   ============================================================================ */
-/* This file contains global styles, CSS variables, and utility classes */
-/* It's imported in the root layout and applies to the entire application */
+@import "tailwindcss";
 
-/* ============================================================================
-   TAILWIND CSS IMPORT
-   ============================================================================ */
-@import "tailwindcss";                                   /* Import Tailwind CSS framework */
+@theme {
+  --font-body: var(--font-inter);
+}
 
-/* ============================================================================
-   CSS CUSTOM PROPERTIES (VARIABLES)
-   ============================================================================ */
-/* Define One Piece themed colors that can be used throughout the application */
 :root {
-  /* ============================================================================
-     PRIMARY ONE PIECE COLORS
-     ============================================================================ */
-  --background: #F6F1E4;                                 /* Parchment-like background color */
-  --foreground: #0C0C0C;                                 /* Deep black text color */
-  --ocean-blue: #0E73B8;                                 /* Ocean blue representing the Grand Line */
-  --straw-hat-gold: #F0B90B;                             /* Luffy's signature straw hat gold */
-  --haki-purple: #6A29FF;                                /* Purple representing Haki (spiritual energy) */
-  --parchment: #F6F1E4;                                  /* Aged paper color for vintage feel */
-  --ink-black: #0C0C0C;                                  /* Deep black for emphasis */
-  
-  /* ============================================================================
-     ENHANCED CONTRAST COLORS
-     ============================================================================ */
-  --dark-gold: #B89400;                                  /* Darker gold for better contrast */
-  --dark-ocean: #0A5A8F;                                 /* Darker ocean blue for depth */
-  --dark-purple: #5A1FCC;                                /* Darker purple for emphasis */
-  --light-text: #FFFFFF;                                 /* Pure white for light text */
-  --medium-text: #2D2D2D;                                /* Medium gray for secondary text */
-  --accent-red: #DC2626;                                 /* Red accent for warnings or highlights */
-  --accent-green: #059669;                               /* Green accent for success states */
-  --accent-orange: #EA580C;                              /* Orange accent for energy/action */
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-/* ============================================================================
-   TAILWIND THEME INTEGRATION
-   ============================================================================ */
-/* Map CSS variables to Tailwind's theme system for consistent usage */
-@theme inline {
-  --color-background: var(--background);                  /* Map background color */
-  --color-foreground: var(--foreground);                  /* Map foreground color */
-  --font-manga: var(--font-bangers);                      /* Map manga font */
-  --font-body: var(--font-inter);                         /* Map body font */
-}
-
-/* ============================================================================
-   DARK MODE SUPPORT - COMPLETE 180 DEGREE COLOR INVERSION
-   ============================================================================ */
-
-/* Dark mode via class (takes precedence over system preference) */
 .dark {
-  --background: #0C0C0C;                               /* Dark background for dark mode */
-  --foreground: #F6F1E4;                               /* Light text for dark mode */
-  color-scheme: dark;                                   /* Tell browser we're in dark mode */
+  --background: #000000;
+  --foreground: #ededed;
 }
 
-/* Dark mode section backgrounds */
-.dark section {
-  background-color: rgb(10, 10, 15) !important;        /* Dark background for sections */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
 }
 
-/* Background color inversions - Complete 180 degree flip */
-.dark .bg-white,
-.dark [class*="bg-white/"] {
-  background-color: rgb(10, 10, 15) !important;        /* White → Very dark */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-.dark .bg-neutral-50,
-.dark [class*="bg-neutral-50/"] {
-  background-color: rgb(30, 30, 35) !important;        /* Lightest gray → Very dark */
-}
-
-.dark .bg-neutral-100,
-.dark [class*="bg-neutral-100/"] {
-  background-color: rgb(40, 40, 45) !important;        /* Very light gray → Dark gray */
-}
-
-.dark .bg-neutral-200,
-.dark [class*="bg-neutral-200/"] {
-  background-color: rgb(50, 50, 55) !important;        /* Light gray → Medium dark */
-}
-
-.dark .bg-neutral-300,
-.dark [class*="bg-neutral-300/"] {
-  background-color: rgb(60, 60, 65) !important;        /* Medium-light → Medium dark */
-}
-
-/* Text color inversions - Complete flip */
-.dark .text-neutral-900 {
-  color: rgb(245, 245, 245) !important;                /* Almost black → Almost white */
-}
-
-.dark .text-neutral-800 {
-  color: rgb(229, 229, 229) !important;                /* Dark gray → Light gray */
-}
-
-.dark .text-neutral-700 {
-  color: rgb(212, 212, 212) !important;                /* Medium dark → Light */
-}
-
-.dark .text-neutral-600 {
-  color: rgb(163, 163, 163) !important;                /* Medium → Medium light */
-}
-
-.dark .text-neutral-500 {
-  color: rgb(163, 163, 163) !important;                /* Gray → Light gray */
-}
-
-.dark .text-neutral-400 {
-  color: rgb(212, 212, 212) !important;                /* Light gray → Lighter */
-}
-
-.dark .text-neutral-300 {
-  color: rgb(229, 229, 229) !important;                /* Very light → Very light */
-}
-
-/* Border color inversions */
-.dark .border-neutral-200 {
-  border-color: rgb(64, 64, 64) !important;            /* Light border → Dark border */
-}
-
-.dark .border-neutral-300 {
-  border-color: rgb(82, 82, 82) !important;            /* Light border → Medium dark */
-}
-
-.dark .border-neutral-800 {
-  border-color: rgb(64, 64, 64) !important;            /* Dark border → Medium dark */
-}
-
-/* Additional comprehensive inversions - COMPLETE 180 DEGREE COLOR FLIP */
-.dark .text-white {
-  color: rgb(245, 245, 245) !important;                /* Keep white text visible */
-}
-
-.dark .text-black {
-  color: rgb(245, 245, 245) !important;                /* Black → White (complete inversion) */
-}
-
-/* Gray background inversions */
-.dark .bg-gray-50,
-.dark .bg-gray-100 {
-  background-color: rgb(30, 30, 35) !important;        /* Light grays → Dark (inversion) */
-}
-
-.dark .bg-gray-200 {
-  background-color: rgb(50, 50, 55) !important;        /* Medium light → Dark */
-}
-
-.dark .bg-gray-800,
-.dark .bg-gray-900,
-.dark .bg-black {
-  background-color: rgb(10, 10, 15) !important;        /* Dark grays/black → Very dark */
-}
-
-/* Gray text inversions */
-.dark .text-gray-900,
-.dark .text-gray-800 {
-  color: rgb(245, 245, 245) !important;                /* Very dark text → Very light (inversion) */
-}
-
-.dark .text-gray-700 {
-  color: rgb(212, 212, 212) !important;                /* Dark text → Light (inversion) */
-}
-
-.dark .text-gray-600,
-.dark .text-gray-500 {
-  color: rgb(163, 163, 163) !important;                /* Medium → Medium light (inversion) */
-}
-
-.dark .text-gray-400,
-.dark .text-gray-300 {
-  color: rgb(115, 115, 115) !important;                /* Light gray → Medium dark (inversion) */
-}
-
-/* Fallback: Automatically switch colors based on user's system preference */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #0C0C0C;                               /* Dark background for dark mode */
-    --foreground: #F6F1E4;                               /* Light text for dark mode */
-  }
-}
-
-/* ============================================================================
-   CUSTOM SCROLLBAR STYLING
-   ============================================================================ */
-/* Clean, minimal scrollbar with subtle theming */
+/* Custom Scrollbar for Apple-like feel */
 ::-webkit-scrollbar {
-  width: 10px;                                           /* Scrollbar width */
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;                               /* Transparent track */
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(14, 115, 184, 0.3);                  /* Semi-transparent ocean blue */
-  border-radius: 5px;                                    /* Rounded corners */
-  border: 2px solid transparent;                         /* Spacing effect */
-  background-clip: padding-box;                          /* Clip to padding box */
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(240, 185, 11, 0.6);                  /* Gold on hover */
-  border-radius: 5px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* ============================================================================
-   ACCESSIBILITY: REDUCED MOTION SUPPORT
-   ============================================================================ */
-/* Respect user's preference for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;               /* Minimize animation duration */
-    animation-iteration-count: 1 !important;             /* Limit animation iterations */
-    transition-duration: 0.01ms !important;              /* Minimize transition duration */
-    scroll-behavior: auto !important;                     /* Disable smooth scrolling */
-  }
-}
-
-/* ============================================================================
-   ACCESSIBILITY: FOCUS STYLES
-   ============================================================================ */
-/* Ensure keyboard navigation is visible with straw hat gold outline */
-*:focus {
-  outline: 2px solid var(--straw-hat-gold);              /* Focus outline color */
-  outline-offset: 2px;                                   /* Space between element and outline */
-}
-
-/* ============================================================================
-   BASE BODY STYLES
-   ============================================================================ */
-/* Global body styling with clean, modern design */
-body {
-  background: var(--background);                         /* Use CSS variable for background */
-  color: var(--foreground);                              /* Use CSS variable for text color */
-  font-family: var(--font-body);                         /* Use Inter font for body text */
-  line-height: 1.6;                                      /* Comfortable reading line height */
-  overflow-x: hidden;                                    /* Prevent horizontal scrolling */
-  -webkit-font-smoothing: antialiased;                   /* Smooth fonts on WebKit */
-  -moz-osx-font-smoothing: grayscale;                    /* Smooth fonts on Firefox */
-}
-
-/* ============================================================================
-   SMOOTH SCROLLING
-   ============================================================================ */
-/* Enable smooth scrolling for better user experience */
-html {
-  scroll-behavior: smooth;                               /* Smooth scrolling behavior */
-}
-
-/* ============================================================================
-   HAKI GLOW EFFECT UTILITY
-   ============================================================================ */
-/* Special glowing effect inspired by One Piece Haki */
-.haki-glow {
-  filter: drop-shadow(0 0 5px var(--haki-purple))       /* Subtle purple glow */
-          drop-shadow(0 0 10px var(--haki-purple))       /* Medium purple glow */
-          drop-shadow(0 0 15px var(--haki-purple));      /* Intense purple glow */
-  transition: filter 0.3s ease;                          /* Smooth transition for glow effect */
-}
-
-.haki-glow:hover {
-  filter: drop-shadow(0 0 10px var(--haki-purple))      /* Enhanced glow on hover */
-          drop-shadow(0 0 20px var(--haki-purple))      /* More intense glow */
-          drop-shadow(0 0 30px var(--haki-purple));     /* Maximum glow effect */
-}
-
-/* ============================================================================
-   PARCHMENT TEXTURE BACKGROUND
-   ============================================================================ */
-/* Aged paper texture effect for vintage One Piece aesthetic */
-.parchment-bg {
-  background-color: var(--parchment);                    /* Base parchment color */
-  background-image: 
-    radial-gradient(circle at 25px 25px, rgba(139, 69, 19, 0.1) 2%, transparent 50%),    /* Large texture dots */
-    radial-gradient(circle at 50px 50px, rgba(139, 69, 19, 0.05) 2%, transparent 50%),   /* Medium texture dots */
-    radial-gradient(circle at 75px 25px, rgba(139, 69, 19, 0.1) 1%, transparent 50%);   /* Small texture dots */
-  background-size: 100px 100px;                          /* Pattern repetition size */
-}
-
-/* ============================================================================
-   WAVE ANIMATION FOR HERO SECTION
-   ============================================================================ */
-/* Ocean wave-like motion for One Piece ocean theme */
-@keyframes wave-motion {
-  0%, 100% { transform: translateX(0px) translateY(0px); }    /* Start and end position */
-  25% { transform: translateX(5px) translateY(-5px); }         /* Move right and up */
-  50% { transform: translateX(-5px) translateY(-10px); }       /* Move left and up more */
-  75% { transform: translateX(-5px) translateY(-5px); }        /* Move left and up */
-}
-
-.wave-animation {
-  animation: wave-motion 4s ease-in-out infinite;        /* Apply wave animation */
-}
-
-/* ============================================================================
-   3D TRANSFORM UTILITIES
-   ============================================================================ */
-/* Utility classes for 3D effects and performance optimization */
-
-.perspective-1000 {
-  perspective: 1000px;                                   /* Set 3D perspective depth */
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;                          /* Maintain 3D transformations */
-}
-
-.backface-hidden {
-  backface-visibility: hidden;                           /* Hide backface of 3D elements */
-}
-
-.transform-gpu {
-  transform: translateZ(0);                              /* Force GPU acceleration for transforms */
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
 }
