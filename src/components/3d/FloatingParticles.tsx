@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 export function FloatingParticles() {
-    const count = 2500;
+    const count = 1000;
     const mesh = useRef<THREE.InstancedMesh>(null);
 
     const particles = useMemo(() => {

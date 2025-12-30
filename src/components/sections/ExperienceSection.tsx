@@ -5,23 +5,18 @@ import { Section } from "../ui/Section";
 
 const experiences = [
     {
-        role: "Senior System Integration Engineer",
-        company: "TechCorp Global",
-        period: "2023 - Present",
-        description: "Leading system integration strategies for enterprise-scale distributed systems. Improved deployment reliability by 40% through automated pipeline validation."
+        role: "Diagnostics System Test and Integration Engineer",
+        company: "Rivian Volkswagen Group Technologies",
+        period: "2025 - Present",
+        description: "Developing and maintaining the diagnostics testing framework (HIL/SIL) and system for the RV Tech vehicles."
     },
     {
-        role: "System Test Engineer",
-        company: "InnovateX Solutions",
-        period: "2021 - 2023",
-        description: "Developed comprehensive test suites for microservices architecture. Automated regression testing using Python and Selenium, reducing cycle time by 60%."
-    },
-    {
-        role: "Junior QA Engineer",
-        company: "SoftStart Inc.",
-        period: "2019 - 2021",
-        description: "Executed manual and automated test cases. Collaborated with developers to identify and resolve critical bugs before production release."
+        role: "Test Automation Engineering Intern - Range and Efficiency Testing",
+        company: "Tesla Inc",
+        period: "2024 - 2025",
+        description: "Developing and maintaining the range and efficiency testing framework and system for the Rivian vehicles."
     }
+    
 ];
 
 export default function ExperienceSection() {
