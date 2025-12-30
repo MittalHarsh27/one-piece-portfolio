@@ -1,225 +1,61 @@
 "use client";
 
-// ============================================================================
-// THEME TOGGLE COMPONENT
-// ============================================================================
-// This component provides a toggle button for switching between light and dark themes
-// It includes smooth animations and One Piece themed styling
-// For more information, see: https://nextjs.org/docs/app/building-your-application/components
+import { motion } from "framer-motion";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "@/components/providers/ThemeProvider";
+import { cn } from "@/lib/utils";
 
-// ============================================================================
-// IMPORTS
-// ============================================================================
-import { motion } from "framer-motion";           // Animation library for smooth transitions
-import { Sun, Moon } from "lucide-react";        // Icons for light and dark modes
-import { useTheme } from "@/components/providers/ThemeProvider";      // Theme context hook
-import { cn } from "@/lib/utils";                // Utility function for conditional class names
-
-// ============================================================================
-// THEME TOGGLE COMPONENT
-// ============================================================================
-// Main toggle component with One Piece themed styling
 interface ThemeToggleProps {
-  className?: string;              // Optional additional CSS classes
-  size?: "sm" | "md" | "lg";      // Size variant
-  showLabel?: boolean;            // Whether to show text label
+  className?: string;
+  size?: "sm" | "md" | "lg";
 }
 
-export default function ThemeToggle({ 
-  className, 
-  size = "md", 
-  showLabel = false 
-}: ThemeToggleProps) {
-  // ============================================================================
-  // THEME CONTEXT
-  // ============================================================================
+export default function ThemeToggle({ className, size = "md" }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
 
-  // ============================================================================
-  // SIZE CONFIGURATION
-  // ============================================================================
-  // Define size variants for the toggle button
-  const sizeConfig = {
-    sm: {
-      button: "w-10 h-10",
-      icon: "w-4 h-4",
-      text: "text-sm",
-    },
-    md: {
-      button: "w-12 h-12",
-      icon: "w-5 h-5",
-      text: "text-base",
-    },
-    lg: {
-      button: "w-14 h-14",
-      icon: "w-6 h-6",
-      text: "text-lg",
-    },
+  const sizeClasses = {
+    sm: "w-8 h-8",
+    md: "w-10 h-10",
+    lg: "w-12 h-12",
   };
 
-  const config = sizeConfig[size];
-
-  // ============================================================================
-  // ANIMATION VARIANTS
-  // ============================================================================
-  // Define animation variants for smooth theme transitions
-  const iconVariants = {
-    light: { 
-      rotate: 0, 
-      scale: 1,
-      opacity: 1,
-    },
-    dark: { 
-      rotate: 180, 
-      scale: 1,
-      opacity: 1,
-    },
-  };
-
-  const buttonVariants = {
-    light: {
-      backgroundColor: "#FFD700", // Treasure gold
-      borderColor: "#D4AF37",
-    },
-    dark: {
-      backgroundColor: "#1A1A2E", // Dark navy
-      borderColor: "#4A90E2",
-    },
-  };
-
-  // ============================================================================
-  // RENDER
-  // ============================================================================
   return (
-    <motion.button
+    <button
       onClick={toggleTheme}
       className={cn(
-        // Base styles
-        "relative flex items-center justify-center rounded-full border-2",
-        "transition-all duration-300 ease-in-out",
-        "hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2",
-        "group overflow-hidden",
-        
-        // Size styles
-        config.button,
-        
-        // Theme-specific styles
-        theme === "light" 
-          ? "bg-straw-hat border-straw-hat hover:bg-treasure-gold focus:ring-straw-hat text-black" 
-          : "bg-ocean-blue border-ocean-blue hover:bg-haki-purple focus:ring-ocean-blue text-white",
-        
-        // Additional classes
+        "relative flex items-center justify-center rounded-full bg-light-bg-secondary dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors",
+        sizeClasses[size],
         className
       )}
-      variants={buttonVariants}
-      animate={theme}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-      title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      aria-label="Toggle theme"
     >
-      {/* Background gradient overlay */}
-      <motion.div
-        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-        style={{
-          background: theme === "light" 
-            ? "linear-gradient(45deg, #FF6B35, #FFD700)" 
-            : "linear-gradient(45deg, #4A90E2, #8A2BE2)",
-        }}
-      />
-
-      {/* Icon container */}
-      <motion.div
-        className="relative z-10 flex items-center justify-center"
-        variants={iconVariants}
-        animate={theme}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-      >
-        {/* Sun icon for light mode */}
+      <div className="relative w-4 h-4">
         <motion.div
-          className="absolute"
           initial={false}
           animate={{
+            scale: theme === "light" ? 1 : 0,
             opacity: theme === "light" ? 1 : 0,
-            scale: theme === "light" ? 1 : 0.8,
             rotate: theme === "light" ? 0 : 90,
           }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.2 }}
+          className="absolute inset-0 flex items-center justify-center"
         >
-          <Sun className={cn(config.icon, "text-orange-600")} />
+          <Sun className="w-4 h-4 text-black dark:text-white" />
         </motion.div>
-
-        {/* Moon icon for dark mode */}
+        
         <motion.div
-          className="absolute"
           initial={false}
           animate={{
+            scale: theme === "dark" ? 1 : 0,
             opacity: theme === "dark" ? 1 : 0,
-            scale: theme === "dark" ? 1 : 0.8,
             rotate: theme === "dark" ? 0 : -90,
           }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.2 }}
+          className="absolute inset-0 flex items-center justify-center"
         >
-          <Moon className={cn(config.icon, "text-blue-300")} />
+          <Moon className="w-4 h-4 text-black dark:text-white" />
         </motion.div>
-      </motion.div>
-
-      {/* Label (optional) */}
-      {showLabel && (
-        <motion.span
-          className={cn(
-            "ml-2 font-medium",
-            config.text,
-            theme === "light" ? "text-light-text-primary" : "text-dark-text-primary"
-          )}
-          initial={false}
-          animate={{
-            opacity: 1,
-            x: 0,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          {theme === "light" ? "Dark" : "Light"}
-        </motion.span>
-      )}
-
-      {/* Ripple effect on click */}
-      <motion.div
-        className="absolute inset-0 rounded-full bg-white/30"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 0, opacity: 0 }}
-        whileTap={{
-          scale: 1.5,
-          opacity: [0, 0.3, 0],
-          transition: { duration: 0.3 },
-        }}
-      />
-    </motion.button>
+      </div>
+    </button>
   );
-}
-
-// ============================================================================
-// THEME TOGGLE VARIANTS
-// ============================================================================
-// Additional theme toggle components for different use cases
-
-/**
- * Compact theme toggle for navigation bars
- */
-export function CompactThemeToggle({ className }: { className?: string }) {
-  return <ThemeToggle size="sm" className={className} />;
-}
-
-/**
- * Large theme toggle for settings pages
- */
-export function LargeThemeToggle({ className }: { className?: string }) {
-  return <ThemeToggle size="lg" showLabel className={className} />;
-}
-
-/**
- * Theme toggle with text label
- */
-export function LabeledThemeToggle({ className }: { className?: string }) {
-  return <ThemeToggle size="md" showLabel className={className} />;
 }
